@@ -27,7 +27,7 @@ export default function Search() {
       />
       <Navbar />
       {/* SEARCH RESULTS */}
-      <div className="mt-7 flex items-center justify-center w-full mx-auto m-5 p-5">
+      <div className="pt-44 flex items-center justify-center w-full mx-auto m-5 p-5">
         {
           isLloading ? <Loading /> : (
             <div className="space-y-6">

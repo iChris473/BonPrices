@@ -8,6 +8,7 @@ import {
 // ROUTES FOR PUBLIC DOMAIN
 import Home from "./pages/Home";
 import Search from "./pages/Search";
+import Description from "./pages/Description";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         {/* PUBLIC DOMAIN ROUTES */}
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/description" element={<Description/>} />
       </Routes>
     </>
   );
