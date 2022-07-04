@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import Navbar from "../components/Navbar";
 import Result from "../components/Result";
@@ -33,9 +34,14 @@ export default function Search() {
               <Result />
               <Result />
               <Result />
+              <Result />
+              <Result />
             </div>
           )
         }
+      </div>
+      <div className="w-full">
+        <Footer />
       </div>
     </div>
   )
