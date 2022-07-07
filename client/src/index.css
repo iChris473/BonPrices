@@ -17,3 +17,7 @@
 .flexBetween {
   @apply flex items-center justify-between
 }
+
+.roundedB{
+  border-radius: 50%;
+}
