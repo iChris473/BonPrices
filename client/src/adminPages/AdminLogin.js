@@ -9,7 +9,7 @@ export default function AdminLogin() {
     const navigate = useNavigate()
 
     return (
-        <div className="h-screen relative">
+        <div className="min-h-screen relative">
             {/* BACKGROUND IMAGE */}
             <img
                 src={require("../images/whiteAdminBg.jpg")}
@@ -47,7 +47,7 @@ export default function AdminLogin() {
                         className="w-full outline-none text-gray-500 bg-transparent border border-[#d6a7d2] w-[90%] mx-auto max-w-[700px] p-3 rounded-lg"
                     />
                     {/* DESCRIPTION SECTION */}
-                    <button onClick={() => navigate("/admin")} className="py-4 px-10 font-extrabold hover:animate-pulse rounded-lg bg-pink-700 text-lg text-white w-[90%] mx-auto max-w-[700px] mt-10">Sign in</button>
+                    <button onClick={() => navigate("/admin")} className="py-4 px-10 font-extrabold hover:animate-pulse rounded-lg bg-pink-700 text-lg text-white w-[90%] mx-auto max-w-[700px] my-10">Sign in</button>
                 </form>
             </div>
         </div>

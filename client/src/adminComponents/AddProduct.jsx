@@ -8,12 +8,12 @@ export default function AddProduct() {
 
   return (
     <div>
-      <h1 className="text-left text-2xl border-b border-green-400 w-[94%] mx-auto max-w-[850px] pb-2 font-bold text-green-600 m-10">
+      <h1 className="text-left text-2xl border-b border-green-400 w-[94%] mx-auto max-w-[850px] pb-2 font-bold text-green-600 my-10">
         Add New Field
       </h1>
-    <form className="bg-gray-50 p-5 rounded-md shadow-lg w-[94%] mx-auto max-w-[850px] bg-opacity-60">
+    <form className="bg-gray-50 p-5 rounded-md shadow-lg w-full mx-auto max-w-[850px] bg-opacity-60">
       {/* TEXT AND INPUT SECTION */}
-      <div className="shadow-lg rounded-md px-5 py-10 border-md flexCenter gap-8 flex-col w-[94%] mx-auto max-w-[800px] bg-gray-50 bg-opacity-80">
+      <div className="shadow-lg rounded-md px-5 py-10 border-md flexCenter gap-8 flex-col w-full mx-auto max-w-[800px] bg-gray-50 bg-opacity-80">
           {/* PRODUCT TITLE */}
           <div className="w-full flex flex-col items-start justify-center gap-4">
               <p className="font-semibold text-lg md:text-xl text-gray-600">Title</p>
@@ -22,7 +22,7 @@ export default function AddProduct() {
           {/* PRODUCT DESCRIPTION */}
           <div className="w-full flex flex-col items-start justify-center gap-4">
               <p className="font-semibold text-lg md:text-xl text-gray-600">Description</p>
-              <input type="text" className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="Enter product description" />
+              <textarea type="text" className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="Enter product description" />
           </div>
           {/* PRODUCT PRICE */}
           <div className="w-full flex flex-col items-start justify-center gap-4">
@@ -34,7 +34,7 @@ export default function AddProduct() {
               <p className="font-semibold text-lg md:text-xl text-gray-600">Unit</p>
               <input type="number" className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="e.g. square meters, per product, etc" />
           </div>
-          {/* PRODUCT UNIT */}
+          {/* PRODUCT STATE */}
           <div className="w-full flex flex-col items-start justify-center gap-4">
               <p className="font-semibold text-lg md:text-xl text-gray-600">State</p>
               <select className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent">
@@ -156,17 +156,17 @@ export default function AddProduct() {
           </div>
       </div>
       {/* IMAGE SECTION */}
-      <div className="shadow-lg rounded-md px-5 py-10 border-md flexCenter gap-8 flex-col w-[94%] mx-auto max-w-[800px] bg-gray-100 mt-20 bg-opacity-80">
+      <div className="shadow-lg rounded-md px-5 py-10 border-md flexCenter gap-8 flex-col w-full mx-auto max-w-[800px] bg-gray-100 mt-20 bg-opacity-80">
         <h1 className="text-left text-xl border-b border-green-400 font-bold text-green-600 w-full">
             Add Pictures
         </h1>
-          <div className="bg-gray-200 shadow-md border rounded-lg border-green-50 h-[400px] w-[400px] flexCenter flex-col gap-2">
+          <div className="bg-gray-200 shadow-md border rounded-lg border-green-50  mx-auto w-[95%] h-[400px] max-w-[400px] flexCenter flex-col gap-2">
               <CameraIcon className="text-gray-500 h-10" />
               <p className="text-gray-500 text-center font-bold text-md">Click to add photo</p>
           </div>
       </div>
       {/* SUBMIT BUTTON */}
-      <button className="bg-gray-800 font-bold text-white p-5 rounded-md w-full my-10 block w-[94%] mx-auto max-w-[750px]">SUBMIT</button>
+      <button className="bg-gray-800 font-bold text-white p-5 rounded-md w-full my-10 block w-full mx-auto max-w-[750px] shadow-lg">SUBMIT</button>
     </form>
     </div>
   );

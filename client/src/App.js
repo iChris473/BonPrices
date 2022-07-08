@@ -36,6 +36,7 @@ function App() {
         <Route path="/admin"  element={<Index />} />
         <Route path="/admin"  element={<Index />} />
         <Route path="/admin/newfield"  element={<NewField />} />
+        <Route path="/admin/myfields"  element={<MyFields />} />
         <Route path="/admin/password"  element={<AdminPassword />} />
         <Route path="/admin/email"  element={<AdminEmail />} />
         <Route path="/admin/login"  element={<AdminLogin />} />

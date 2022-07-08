@@ -13,7 +13,7 @@ export default function AdminWidgets() {
       {/* TOTAL FIELDS */}
       <div className="flexBetween shadow-lg rounded-md px-5 py-10 border border-pink-200  w-[95%] bg-gray-100 max-w-[700px] mx-auto">
         <div className="space-y-5">
-          <h1 className="tracking-wide russo text-xl text-gray-500">
+          <h1 className="tracking-wide russo font-semibold text-xl text-gray-500">
             TOTAL FIELDS
           </h1>
           <p className="font-extrabold text-5xl text-pink-800">50</p>
@@ -24,7 +24,7 @@ export default function AdminWidgets() {
       <div className="flexBetween shadow-lg rounded-md px-5 py-10 border border-pink-200  w-[95%] bg-gray-100 max-w-[700px] mx-auto">
         <Link to="/admin/myfields">
           <div className="space-y-5">
-            <h1 className="tracking-wide russo text-xl text-gray-500">
+            <h1 className="tracking-wide russo font-semibold text-xl text-gray-500">
               VIEW ALL FIELDS
             </h1>
             <ViewGridAddIcon className="font-extrabold h-14 text-pink-800" />
@@ -36,7 +36,7 @@ export default function AdminWidgets() {
       <div className="flexBetween shadow-lg rounded-md px-5 py-10 border border-pink-200  w-[95%] bg-gray-100 max-w-[700px] mx-auto">
         <Link to="/admin/newfield">
           <div className="space-y-5">
-            <h1 className="tracking-wide russo text-xl text-gray-500">
+            <h1 className="tracking-wide russo font-semibold text-xl text-gray-500">
               ADD NEW FIELD
             </h1>
             <CursorClickIcon className="font-extrabold h-14 text-pink-800 rotate-90" />

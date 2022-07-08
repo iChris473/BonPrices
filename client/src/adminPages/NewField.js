@@ -19,7 +19,7 @@ export default function NewField() {
           <AdminSidebar mobile={mobileMenu} setMobile={setMobileMenu} />
         </div>
         {/* MAIN SECTION */}
-        <div className="pt-32 col-span-7 m-5">
+        <div className="pt-32 col-span-7 m-1">
           <AddProduct />
         </div>
     </div>
