@@ -2,7 +2,6 @@
 import { useState } from "react";
 import AdminNavbar from "../adminComponents/AdminNavbar";
 import AdminSidebar from "../adminComponents/AdminSidebar";
-import AddProduct from "../adminComponents/AddProduct";
 import EditAdminEmail from "../adminComponents/EditAdminEmail";
 
 

@@ -17,6 +17,7 @@ import MyFields from "./adminPages/MyFields";
 import AdminPassword from "./adminPages/AdminPassword";
 import AdminEmail from "./adminPages/AdminEmail";
 import AdminLogin from "./adminPages/AdminLogin";
+import AdminProfile from "./adminPages/AdminProfile";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path="/admin/password"  element={<AdminPassword />} />
         <Route path="/admin/email"  element={<AdminEmail />} />
         <Route path="/admin/login"  element={<AdminLogin />} />
+        <Route path="/admin/profile"  element={<AdminProfile />} />
 
       </Routes>
     </>

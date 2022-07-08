@@ -2,10 +2,10 @@
 import { useState } from "react";
 import AdminNavbar from "../adminComponents/AdminNavbar";
 import AdminSidebar from "../adminComponents/AdminSidebar";
-import EditAdminPassword from "../adminComponents/EditAdminPassword";
+import ProfileComponent from "../adminComponents/ProfileComponent";
 
 
-export default function AdminPassword() {
+export default function AdminProfile() {
   
   const [mobileMenu, setMobileMenu] = useState(false)
 
@@ -20,7 +20,7 @@ export default function AdminPassword() {
         </div>
         {/* MAIN SECTION */}
         <div className="pt-32 col-span-7 m-1">
-          <EditAdminPassword />
+          <ProfileComponent />
         </div>
     </div>
   )
