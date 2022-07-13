@@ -48,7 +48,7 @@ router.get("/product/get/:id", auth, productController.getOneProduct)
 // UPDATE PRODUCT
 router.put("/product/update/:id", auth, productController.updateProduct)
 // DELTE ONE PRODUCT
-router.put("/product/delete/:id", auth, productController.deleteOneProduct)
+router.delete("/product/delete/:id", auth, productController.deleteOneProduct)
 
 
 

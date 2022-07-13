@@ -38,7 +38,7 @@ export default function AddProduct() {
 
           const res = await publicRequest.get(`/product/get/${productId}`)
           setProductData(res.data)
-          setAllPictures(res.data?.picture[0])
+          setAllPictures( (typeof res.data.picture[0] === 'string') ? res.data.picture : res.data.picture[0])
           setLoadingProduct(false)
           
         } catch (error) {
@@ -98,8 +98,9 @@ export default function AddProduct() {
     }
 
     let totalNewPictures = []
-    let newPictures = allPictures?.filter(p => !productData?.picture[0]?.includes(p))
-    let removedPics = productData?.picture[0]?.filter(p => !allPictures?.includes(p))
+    let oldPictures = (typeof productData?.picture[0] === 'string') ? productData?.picture : productData?.picture[0]
+    let newPictures = allPictures?.filter(p => !oldPictures?.includes(p))
+    let removedPics = oldPictures?.filter(p => !allPictures?.includes(p))
 
     try {
 
@@ -142,7 +143,7 @@ export default function AddProduct() {
           
         }  
 
-      newProduct.picture = [allPictures?.filter(p => productData?.picture[0]?.includes(p)).concat(totalNewPictures)];
+      newProduct.picture = [allPictures?.filter(p => oldPictures?.includes(p)).concat(totalNewPictures)];
 
       await publicRequest.put(`/product/update/${productId}`, newProduct)
       setLoading(false)
@@ -178,6 +179,7 @@ export default function AddProduct() {
       return;
     }
   }
+
 
   return (
     <div id="mainForm">
@@ -348,7 +350,7 @@ export default function AddProduct() {
             </h1>
             {/* RENDER SELECTED PICTURES */}
               {
-                allPictures?.map(pic => (
+                  allPictures?.map(pic => (
                   <div key={pic?.name || pic} className="relative flexCenter">
                     <XCircleIcon onClick={() => setAllPictures(allPictures.filter(p => p != pic))} className="text-red-500 h-10 absolute top-5 right-5 bg-white cursor-pointer roundedB" />
                     <img src={pic?.name ? URL.createObjectURL(pic) : pic} alt="Product Img" className="w-[400px] object-contain m-5 shadow-md border rounded-lg" />
