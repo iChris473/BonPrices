@@ -1,14 +1,9 @@
 
 const router = require("express").Router()
 const userController = require("../controllers/userController")
-const postController = require("../controllers/productcontroller")
-const featuredController = require("../controllers/featuredController")
-const arrivalController = require("../controllers/arrivalController")
-const adminController = require("../controllers/adminController")
-const cartController = require("../controllers/cartController")
-const orderController = require("../controllers/orderController")
-const billingController = require("../controllers/billingController")
-const {verifiedAccessToken, verifiedAdminToken} = require("./verifyTokens")
+const agentController = require("../controllers/agentController")
+const productController = require("../controllers/productController")
+const auth = require("../middleware/auth")
 
 // USER ROUTES
 
@@ -17,103 +12,40 @@ router.post("/user/register", userController.createUser)
 // login user
 router.post("/user/login", userController.loginUser)
 // Update User
-router.put("/user/update/:id", verifiedAccessToken, userController.updateUser)
+router.put("/user/update/:id", userController.updateUser)
 // Delete user
-router.delete("/user/delete/:id", verifiedAccessToken, userController.deleteUser)
+router.delete("/user/delete/:id", userController.deleteUser)
 // Get one User
-router.get("/user/get/:id", verifiedAccessToken, userController.getOneUser)
+router.get("/user/get/:id", userController.getOneUser)
 // Get All Users
-router.get("/user/all/:id", verifiedAdminToken, userController.getAllUsers)
+router.get("/user/all/:id", userController.getAllUsers)
+
+// AGENT ROUTES
+
+// AUTHENTICATE USER LOGGED IN
+router.get('/auth/loggedin', agentController.verifyloggedIn)
+// CREATE AGENT
+router.post("/agent/create", agentController.createAgent)
+// LOGIN AGENT
+router.post("/agent/login", agentController.loginAgent)
+// LOGOUT AGENT
+router.get("/agent/token/delete", agentController.logOut)
 
 
-// ADMIN ROUTES
-
-// create admin
-router.post("/admin/register", adminController.createUser)
-// login admin
-router.post("/admin/login", adminController.loginUser)
-// Update admin
-router.put("/admin/update/:id", verifiedAccessToken, adminController.updateUser)
-// Delete admin
-router.delete("/admin/delete/:id", verifiedAccessToken, adminController.deleteUser)
-
-// PORODUCT ROUTES
-
-// create product
-router.post("/product/create/:id", verifiedAdminToken, postController.createProduct)
-// get one product
-router.get("/product/get/:id", postController.getOneProduct)
-// get varieties of products
-router.get("/product/get", postController.getProducts)
-// GET RECOMMENDATIONS
-router.get("/product/recommends", postController.getProducts)
-// Update product
-router.put("/product/update/:id", postController.updateProduct)
-// Delete product
-router.delete("/product/delete/:id", verifiedAdminToken, postController.deleteProduct)
+// PRODUCT ROUTES
 
 
-// FEATURED ROUTES
+// CREATE PRODUCTS
+router.post("/product/create", auth, productController.createProduct)
+// GET AGENTS PRODUCTS
+router.get("/product/agent/", auth, productController.getAgentsProduct)
+// GET ONE PRODUCT
+router.get("/product/get/:id", auth, productController.getOneProduct)
+// UPDATE PRODUCT
+router.put("/product/update/:id", auth, productController.updateProduct)
+// DELTE ONE PRODUCT
+router.put("/product/delete/:id", auth, productController.deleteOneProduct)
 
-// create product
-router.post("/featured/create/:id", verifiedAdminToken, featuredController.createProduct)
-// get one product
-router.get("/featured/get/:id", featuredController.getOneProduct)
-// get varieties of products
-router.get("/featured/get", featuredController.getProducts)
-// Update product
-router.put("/featured/update/:id", verifiedAdminToken, featuredController.updateProduct)
-// Delete product
-router.delete("/featured/delete/:id", verifiedAdminToken, featuredController.deleteProduct)
-
-
-// NEW ARRIVAL ROUTES
-
-// create product
-router.post("/arrival/create/:id", verifiedAdminToken, arrivalController.createProduct)
-// get one product
-router.get("/arrival/get/:id", arrivalController.getOneProduct)
-// get varieties of products
-router.get("/arrival/get", arrivalController.getProducts)
-// Update product
-router.put("/arrival/update/:id", verifiedAdminToken, arrivalController.updateProduct)
-// Delete product
-router.delete("/arrival/delete/:id", verifiedAdminToken, arrivalController.deleteProduct)
-
-
-// Create cart
-router.post("/cart/create/:id", verifiedAccessToken, cartController.createCart)
-// Update cart
-router.put("/cart/update/:id", verifiedAccessToken, cartController.updateCart)
-// delete cart
-router.delete("/cart/delete/:id", verifiedAccessToken, cartController.deleteCart)
-// get user cart
-router.get("/cart/user/:id", verifiedAccessToken, cartController.getUsersCart)
-// get all carts
-router.get("/cart/get/:id", verifiedAccessToken, cartController.getAllCart)
-
-
-// Create billing
-router.post("/billing/create/:id", verifiedAccessToken, billingController.createBilling)
-// Update billing
-router.put("/billing/update/:id", verifiedAccessToken, billingController.updateBilling)
-// get all billing
-router.get("/billing/user/all", billingController.getAllBilling)
-// get user billing
-router.get("/billing/user/:id", billingController.getUsersBilling)
-
-// ORDER ROUTES
-
-// Create order
-router.post("/order/create/:id", orderController.createOrder)
-// Update order
-router.put("/order/update/:id", verifiedAccessToken, orderController.updateOrder)
-// delete order
-router.delete("/order/delete/:id", verifiedAdminToken, orderController.deleteOrder)
-// get user order
-router.get("/order/user/:id", verifiedAccessToken, orderController.getOneOrder)
-// get all orders
-router.get("/order/get/:id", verifiedAdminToken, orderController.getAllOrder)
 
 
 module.exports = router

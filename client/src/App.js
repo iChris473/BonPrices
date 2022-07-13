@@ -1,9 +1,10 @@
 
-
+import {useContext} from 'react';
 import {
   Routes,
   Route,
 } from "react-router-dom";
+import AuthContext from './context/AuthContext'
 
 // ROUTES FOR PUBLIC DOMAIN
 import Home from "./pages/Home";
@@ -18,11 +19,12 @@ import AdminPassword from "./adminPages/AdminPassword";
 import AdminEmail from "./adminPages/AdminEmail";
 import AdminLogin from "./adminPages/AdminLogin";
 import AdminProfile from "./adminPages/AdminProfile";
+import UpdateField from "./adminPages/UpdateField";
 
 
 function App() {
 
-  const user = false
+  const {loggedIn} = useContext(AuthContext)
 
   return (
     <>
@@ -34,14 +36,15 @@ function App() {
         <Route path="/description" element={<Description/>} />
 
         {/* ADMIN ROUTES */}
-        <Route path="/admin"  element={<Index />} />
-        <Route path="/admin"  element={<Index />} />
-        <Route path="/admin/newfield"  element={<NewField />} />
-        <Route path="/admin/myfields"  element={<MyFields />} />
-        <Route path="/admin/password"  element={<AdminPassword />} />
-        <Route path="/admin/email"  element={<AdminEmail />} />
-        <Route path="/admin/login"  element={<AdminLogin />} />
-        <Route path="/admin/profile"  element={<AdminProfile />} />
+        <Route path="/admin"  element={loggedIn ? <Index /> : <AdminLogin /> } />
+        <Route path="/admin"  element={loggedIn ? <Index /> : <AdminLogin /> } />
+        <Route path="/admin/newfield"  element={loggedIn ? <NewField /> : <AdminLogin /> } />
+        <Route path="/admin/myfields"  element={loggedIn ? <MyFields /> : <AdminLogin /> } />
+        <Route path="/admin/password"  element={loggedIn ? <AdminPassword /> : <AdminLogin /> } />
+        <Route path="/admin/email"  element={loggedIn ? <AdminEmail /> : <AdminLogin /> } />
+        <Route path="/admin/login"  element={loggedIn ? <Index /> : <AdminLogin /> } />
+        <Route path="/admin/profile"  element={loggedIn ? <AdminProfile /> : <AdminLogin /> } />
+        <Route path="/admin/update"  element={loggedIn ? <UpdateField /> : <AdminLogin /> } />
 
       </Routes>
     </>

@@ -4,12 +4,18 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
 exports.createUser = async (req, res) => {
+
     const newUser = new User(req.body)
+
     try {
+
         await newUser.save()
         res.status(201).json(newUser)
+
     } catch (error) {
+
         res.status(404).json("An account has been registered with this email")
+
     }
 }
 
@@ -50,11 +56,21 @@ exports.loginUser = async  (req, res) => {
 
 exports.updateUser = async(req, res) => {
     try {
+
         if(req.body.password){
+
             const salt = await bcrypt.genSalt(10)
             const hashedPassword = await bcrypt.hash(req.body.password, salt)
             req.body.password = hashedPassword
+
         }
+
+        // if(req.body.email){
+
+            
+
+        // }
+
         const user = await User.findOneAndUpdate(
             {
                 _id: req.user.id

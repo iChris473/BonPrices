@@ -1,8 +1,27 @@
 import { PlusIcon } from "@heroicons/react/outline";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import {publicRequest} from "../axioMethod"
+import AuthContext from "../context/AuthContext";
 
+export default function AdminSidebar() {
 
-export default function AdminSidebar({mobile}) {
+  const {getLoggedIn} = useContext(AuthContext)
+
+  const logOutFunction = async () => {
+    // confirm("Are you sure you want to log out?");
+    if (window.confirm("Are you sure you want to log out?")) {
+      try {
+        const res = await publicRequest.get("/agent/token/delete")
+        getLoggedIn()
+    } catch (error) {
+        console.log(error)
+    }
+
+    } else {
+      return;
+    }
+  };
   
   return (
     <div
@@ -44,12 +63,10 @@ export default function AdminSidebar({mobile}) {
           <p className="text-gray-500 font-semibold flex-1 text-md">Edit Email</p>
         </div>
       </Link>
-      <Link to="/admin/newfield">
-        <div className="flexBetween w-full gap-3">
-          <PlusIcon className="text-pink-600 h-5" />
-          <p className="text-gray-500 font-semibold flex-1 text-md">Log Out</p>
-        </div>
-      </Link>
+      <div onClick={logOutFunction} className="cursor-pointer flexBetween w-full gap-3">
+        <PlusIcon className="text-pink-600 h-5" />
+        <p className="text-gray-500 font-semibold flex-1 text-md">Log Out</p>
+      </div>
     </div>
   );
 }
