@@ -21,6 +21,9 @@ const AgentSchema = new mongoose.Schema({
     },
     phone: {
         type: String,
+    },
+    name: {
+        type: String
     }
 
 }, {timestamps: true})

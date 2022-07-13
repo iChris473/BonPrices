@@ -66,13 +66,18 @@ exports.loginAgent = async (req, res) => {
 
 // VERIFY LOGGED IN
 exports.verifyloggedIn = async (req, res) => {
+
     try {
         
         const token = req.cookies.token
 
         if(!token) return res.json(false)
 
-        jwt.verify(token, process.env.JWTSECRET)
+        const validated = jwt.verify(token, process.env.JWTSECRET)
+
+        const agent = await Agent.findById(validated.id)
+
+        if(!agent) return res.json(false)
 
         return res.json(true)
 
@@ -81,10 +86,82 @@ exports.verifyloggedIn = async (req, res) => {
     }
 }
 
+// UPDATE AGENT
+exports.updateAgent = async (req, res) => {
+        
+    const { p } = req.body;
+
+    try {
+        
+        const oldAgent = await Agent.findById(req.userId)
+
+        let newAgent = {...req.body}
+
+        // IF UPDATE CONTAINS EMAIL
+        if(req.body.email){
+
+            const registered = await Agent.findOne({email: req.body.email})
+
+            if(registered) return res.status(401).json("An Account is registered with this email")
+
+            const correctPassword = await bcrypt.compare(p, oldAgent.password);
+
+            if (!correctPassword) return res.status(401).json("Incorrect Password");
+
+        }
+
+        // IF UPDATE CONTAINS PASSWORD
+        if (req.body.password) {
+          // checks password
+          const validPassword = await bcrypt.compare(p, oldAgent.password);
+
+          if (!validPassword) return res.status(401).json("Incorrect old Password");
+
+          const salt = await bcrypt.genSalt(10);
+
+          const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
+          req.body.password = hashedPassword;
+
+        }
+        
+        const update = await Agent.findOneAndUpdate(
+            {
+                _id: req.userId
+            }, {
+                $set: req.body
+            },{new: true}
+        );
+        
+        return res.status(200).json(update)
+
+    } catch (error) {
+        return res.status(400).json(error)
+    }
+
+}
+
 // LOGOUT 
 exports.logOut = async (req, res) => {
     return res.cookie("token", "", {
         httpOnly: true,
         expires: new Date(0)
     }).send()
+}
+
+// GET ONE AGENT
+exports.getAgentProfile = async (req, res) => {
+
+    try {
+        
+        const agnt = await Agent.findById(req.userId)
+
+        const {password, ...others} = agnt._doc
+
+        return res.status(200).json(others)
+
+    } catch (error) {
+        return res.status(200).json(false)
+    }
+
 }

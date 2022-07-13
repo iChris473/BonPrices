@@ -26,10 +26,14 @@ router.get("/user/all/:id", userController.getAllUsers)
 router.get('/auth/loggedin', agentController.verifyloggedIn)
 // CREATE AGENT
 router.post("/agent/create", agentController.createAgent)
+// UPDATE AGENT AGENT
+router.put("/agent/update", auth, agentController.updateAgent)
 // LOGIN AGENT
 router.post("/agent/login", agentController.loginAgent)
 // LOGOUT AGENT
 router.get("/agent/token/delete", agentController.logOut)
+// GET ONE AGENT
+router.get("/agent/get", auth, agentController.getAgentProfile)
 
 
 // PRODUCT ROUTES
