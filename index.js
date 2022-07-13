@@ -19,6 +19,8 @@ const cookieParser = require("cookie-parser")
 //     next();
 // })
 
+// '../controllers/productController'
+
 app.use(cors({
     origin: ['http://localhost:3000', 'https://bonprices.herokuapp.com'],
     credentials: true

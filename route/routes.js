@@ -2,7 +2,7 @@
 const router = require("express").Router()
 const userController = require("../controllers/userController")
 const agentController = require("../controllers/agentController")
-const productController = require("../controllers/productController")
+const productController = require("../controllers/aproductController")
 const auth = require("../middleware/auth")
 
 // USER ROUTES
