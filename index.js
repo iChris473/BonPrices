@@ -20,7 +20,7 @@ const cookieParser = require("cookie-parser")
 // })
 
 app.use(cors({
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:3000', 'https://bonprices.herokuapp.com'],
     credentials: true
 }))
 app.use(express.json())
