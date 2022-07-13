@@ -39,4 +39,5 @@ app.get("*", (req, res) => {
 })
 
 const port = process.env.PORT || 8500
+
 app.listen(port, () => console.log(`Backend running on ${port}`))
