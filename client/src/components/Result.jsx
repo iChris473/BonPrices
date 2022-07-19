@@ -1,28 +1,24 @@
 
 import { Link } from "react-router-dom";
 
-export default function Result() {
+export default function Result({data}) {
   return (
     <div>
       {/* PRICE TITLE */}
-      <Link to="/description#">
-        <h1 className="text-[#a8039b] max-w-[700px] cursor-pointer hover:border-b border-[#a8039b] font-semibold text-xl md:text-2xl">
-          Price of Mercedess E 400 in Palo Alto Lorem ipsum dolor sit amet.
+        <h1 className="text-[#a8039b] w-fit cursor-pointer hover:underline decoration-[#a8039b] font-semibold text-xl md:text-2xl">
+          <Link to={`/description#?id=${data._id}`}>{data.title}</Link>
         </h1>
-      </Link>
       <div className="flexBetween">
         <div className="space-y-3 flex-1">
           {/* PRICE DESCRIPTION */}
           <p className="text-gray-500 text-sm sm:text-nd md:text-lg tracking-wide max-w-[700px]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-            odio qui esse voluptatum maiores cupiditate ea sapiente est
-            architecto et
+          {data.description}
           </p>
           {/* PRICE COST PER UNIT */}
-          <p className="font-bold text-lg text-gray-700">NGN 5,000 per unit</p>
+          <p className="font-bold text-lg text-gray-700">NGN {data.price.toLocaleString()} per unit</p>
         </div>
         <img
-          src={require("../images/e400.png")}
+          src={data.picture[0]}
           className="h-[60px] sm:h-[70px] md:h-[80px] rounded-lg object-contain"
           alt=""
         />

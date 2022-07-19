@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { publicRequest } from '../axioMethod'
 
-export default function Tables() {
+export default function Tables({type}) {
 
     const [productData, setProductData] = useState([])
     const [loading, setLoading] = useState(true)
@@ -14,8 +14,7 @@ export default function Tables() {
         const getAgentProduct = async () => {
             setLoading(true)
             try {
-
-                const res = await publicRequest.get("/product/agent/")
+                const res = await publicRequest.get("/super/agent/all")
                 setProductData(res.data)
                 setLoading(false)
             } catch (error) {
@@ -51,19 +50,19 @@ export default function Tables() {
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 sdark:bg-gray-700 sdark:text-gray-400">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
-                                    Picture
+                                    Email
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Title
+                                    Name
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Description
+                                    Phone
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Price
+                                    State
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Unit
+                                    LGA
                                 </th>
                                 <th scope="col" className="px-6 py-3">
                                     <span className="sr-only">Edit</span>
@@ -75,18 +74,18 @@ export default function Tables() {
                                 productData?.map(data => (
                                     <tr key={data._id} className="border-b sdark:bg-gray-800 sdark:border-gray-700 odd:bg-white even:bg-gray-50 odd:sdark:bg-gray-800 even:sdark:bg-gray-700">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 sdark:text-white whitespace-nowrap">
-                                            <img src={data.picture} className="h-[50px] w-[50px] roundedB object-cover" alt="" />
+                                        {data.email || "N/A"}
                                         </th>
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 sdark:text-white whitespace-nowrap">
-                                            {data.title}
+                                            {data.name || "N/A"}
                                         </th>
                                         <td className="px-6 py-4">
-                                            <p className='w-[200px] truncate'>{data.description}</p>
+                                            <p className='w-[200px] truncate'>{data.phone || "N/A"}</p>
                                         </td>
-                                        <td className="px-6 py-4">{data.price}</td>
-                                        <td className="px-6 py-4">{data.unit}</td>
+                                        <td className="px-6 py-4">{data.state || "N/A"}</td>
+                                        <td className="px-6 py-4">{data.lga || "N/A"}</td>
                                         <td className="px-6 py-4 text-right">
-                                            <Link to={`/admin/update?id=${data._id}`}>
+                                            <Link to={`/super/agemt/update?id=${data._id}`}>
                                                 <p className="font-medium text-blue-600 sdark:text-blue-500 hover:underline">Edit</p>
                                             </Link>
                                         </td>

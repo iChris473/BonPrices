@@ -2,9 +2,9 @@
 import { createContext, useEffect, useState } from 'react'
 import {publicRequest} from '../axioMethod'
 
-const AuthContext = createContext()
+const SuperContext = createContext()
 
-const AuthContextProvider = ({children}) => {
+const SuperContextProvider = ({children}) => {
 
     const [appLoading, setAppLoading] = useState(false)
     
@@ -14,10 +14,10 @@ const AuthContextProvider = ({children}) => {
 
         try {
             setAppLoading(true)
-            const res = await publicRequest.get("/auth/loggedin")
+            const res = await publicRequest.get("/super/auth/verifylog")
             setLoggedIn(res.data)
             setAppLoading(false)
-
+            
         } catch (error) {
             setAppLoading(false)
         }
@@ -29,16 +29,16 @@ const AuthContextProvider = ({children}) => {
     }, [])
 
     return (
-        <AuthContext.Provider value={{
+        <SuperContext.Provider value={{
             loggedIn,
             getLoggedIn,
             appLoading
         }}>
             {children}
-        </AuthContext.Provider>
+        </SuperContext.Provider>
     )
 
 }
 
-export {AuthContextProvider}
-export default AuthContext
+export {SuperContextProvider}
+export default SuperContext

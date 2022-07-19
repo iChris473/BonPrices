@@ -65,11 +65,6 @@ exports.updateUser = async(req, res) => {
 
         }
 
-        // if(req.body.email){
-
-            
-
-        // }
 
         const user = await User.findOneAndUpdate(
             {

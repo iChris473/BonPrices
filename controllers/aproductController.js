@@ -83,3 +83,140 @@ exports.deleteOneProduct = async (req, res) => {
     }
 
 }
+
+exports.queryProduct = async (req, res) => {
+
+    try {
+        
+        // const result = await Product.find({
+        //     text: {
+        //         query: req.params.query,
+        //         path: {
+        //           wildcard: '*'
+        //         }
+        // }})
+        let result;
+
+        if( req.query.state && (req.query.state != "all") ){
+
+            result = await Product.aggregate([
+                {
+                    $search: {
+                        // index: "default", // optional, defaults to "default"
+                        // autocomplete: {
+                        //     query: req.params.query,
+                        //     path: { wildcard: "*" },
+                        //     tokenOrder: "sequential",
+                        //     fuzzy: {
+                        //         maxEdits: 1
+                        //     }
+                        // }
+                        compound: {
+                            should: [
+                                {
+                                    autocomplete: {
+                                        query:req.query.q || " ",
+                                        path: 'description',
+                                        tokenOrder: "sequential",
+                                        fuzzy: {
+                                            maxEdits: 1
+                                        }
+                                    },
+                                },
+                                {
+                                    autocomplete: {
+                                        query:req.query.q || " ",
+                                        path: 'title',
+                                        tokenOrder: "sequential",
+                                        fuzzy: {
+                                            maxEdits: 1
+                                        }
+                                    },
+                                },
+                            ],
+                        },
+                    }
+                },
+                { $match: { state: req.query.state } },
+            ])
+            
+        } else {
+            
+            result = await Product.aggregate([
+                {
+                    $search: {
+                        index: "default", // optional, defaults to "default"
+                        // autocomplete: {
+                        //     query: req.params.query,
+                        //     path: 'description',
+                        //     tokenOrder: "sequential",
+                        //     fuzzy: {
+                        //         maxEdits: 1
+                        //     }
+                        // }
+                        compound: {
+                            should: [
+                                {
+                                    autocomplete: {
+                                        query:req.query.q || " ",
+                                        path: 'description',
+                                        tokenOrder: "sequential",
+                                        fuzzy: {
+                                            maxEdits: 1
+                                        }
+                                    },
+                                },
+                                {
+                                    autocomplete: {
+                                        query:req.query.q || " ",
+                                        path: 'title',
+                                        tokenOrder: "sequential",
+                                        fuzzy: {
+                                            maxEdits: 1
+                                        }
+                                    },
+                                },
+                            ],
+                        },
+                    }
+                },
+            ])
+
+        }
+
+        return res.status(200).json(result)
+
+    } catch (error) {
+
+        return res.status(400).json(error)
+
+    }
+
+}
+
+exports.getSuggestions = async (req, res) => {
+    try {
+        
+        const result = await Product.aggregate([
+            {
+                $search: {
+                    index: "default", // optional, defaults to "default"
+                    autocomplete: {
+                        query: req.params.query,
+                        path: 'description',
+                        tokenOrder: "sequential",
+                        fuzzy: {
+                            maxEdits: 1
+                        }
+                    }
+                }
+            },
+            { $limit: 10 }
+        ])
+
+        return res.status(200).json(result)
+
+    } catch (error) {
+        return res.status(400).json(error)
+    }
+}

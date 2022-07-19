@@ -9,13 +9,26 @@ const auth = async (req, res, next) => {
 
         if(!token) return res.status(401).json('Unauthorized')
 
-        const validated = jwt.verify(token, process.env.JWTSECRET)
+        jwt.verify(token, process.env.JWTSECRET, (err, user) => {
 
-        req.userId = validated.id
+            if(err){
+                jwt.verify(token, process.env.SUPER_SECRET, (error, superAdmin) => {
 
-        next()
+                    if(error) return res.status(401).json('Unauthorized')
+                    
+                    req.userId = superAdmin.id
+                    
+                })
+            } else {
 
+                req.userId = user.id
+            }
+
+            next()
+        })
+        
     } catch (error) {
+        console.log("error")
         return res.status(401).json('Unauthorized')
     }
 

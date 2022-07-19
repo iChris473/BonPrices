@@ -1,10 +1,10 @@
 import React, { useContext, useRef, useState } from "react";
 import {publicRequest} from "../axioMethod"
-import AuthContext from "../context/AuthContext";
+import SuperContext from "../context/SuperContext";
 
-export default function AdminLogin() {
+export default function SuperLogin() {
 
-    const {getLoggedIn, appLoading} = useContext(AuthContext)
+    const {getLoggedIn, appLoading} = useContext(SuperContext)
 
     const email = useRef()
     const password = useRef()
@@ -35,7 +35,7 @@ export default function AdminLogin() {
 
         try {
 
-            const res = await publicRequest.post("/agent/login", newAgent)
+            const res = await publicRequest.post("/super/auth/login", newAgent)
             setLoading(false)
             getLoggedIn()
             console.log(res.data)
@@ -75,33 +75,35 @@ export default function AdminLogin() {
                         className="mt-10 h-52 object-contain"
                         alt=""
                     />
-                    <h1 className="text-[#a8039b] font-extrabold text-4xl">
-                        Admin Sign in
+                    <h1 className="text-gray-700 font-extrabold text-4xl">
+                        Super Admin
                     </h1>
                 </div>
                 {err && <p className="text-red-500 text-lg font-semibold text-center mt-7">{err}</p>}
                 {/* INPUT SECTION */}
                 <form onSubmit={handleSubmit} className="w-full mx-auto flexCenter flex-col">
-                    <p className="text-gray-500 font-bold text-md md:text-lg text-left mt-5 w-[90%] mx-auto max-w-[700px]">
+                    <p className="text-gray-500 font-bold text-md md:text-lg text-left mt-5 w-[90%] mx-auto max-w-[500px]">
                         Email*
                     </p>
                     <input
                         ref={email}
-                        type="text"
+                        required
+                        type="email"
                         placeholder="Enter a valid email"
-                        className="outline-none text-gray-500 bg-transparent border border-[#d6a7d2] w-[94%] mx-auto max-w-[700px] p-3 rounded-lg"
+                        className="outline-none text-gray-500 bg-transparent border border-black w-[94%] mx-auto max-w-[500px] p-3 rounded-lg"
                     />
-                    <p className="text-gray-500 font-bold text-md md:text-lg text-left mt-5 w-[90%] mx-auto max-w-[700px]">
+                    <p className="text-gray-500 font-bold text-md md:text-lg text-left mt-5 w-[90%] mx-auto max-w-[500px]">
                         Password*
                     </p>
                     <input
                         ref={password}
+                        required
                         type="Password"
                         placeholder="******"
-                        className="outline-none text-gray-500 bg-transparent border border-[#d6a7d2] w-[94%] mx-auto max-w-[700px] p-3 rounded-lg"
+                        className="outline-none text-gray-500 bg-transparent border border-black w-[94%] mx-auto max-w-[500px] p-3 rounded-lg"
                     />
                     {/* DESCRIPTION SECTION */}
-                    <button type="submit" className="py-4 px-10 font-extrabold hover:animate-pulse rounded-lg bg-pink-700 text-lg text-white w-[90%] mx-auto max-w-[700px] my-10">{loading ? "Loading..." : 'Sign in'}</button>
+                    <button type="submit" className="py-4 px-10 font-extrabold hover:animate-pulse rounded-lg bg-gray-700 text-lg text-white w-[90%] mx-auto max-w-[500px] my-10">{loading ? "Loading..." : 'Sign in'}</button>
                 </form>
             
             </div>

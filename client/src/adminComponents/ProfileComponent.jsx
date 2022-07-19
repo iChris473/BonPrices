@@ -26,7 +26,7 @@ export default function ProfileComponent() {
       setLoadingProfile(true)
       try {
 
-        const res = await publicRequest.get('/agent/get')
+        const res = await publicRequest.get('/agent/get/')
         console.log(res.data)
         setAgent(res.data)
         setLoadingProfile(false)

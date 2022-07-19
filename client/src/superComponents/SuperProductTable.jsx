@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { publicRequest } from '../axioMethod'
 
-export default function Tables() {
+export default function SuperProductTable({type}) {
 
     const [productData, setProductData] = useState([])
     const [loading, setLoading] = useState(true)
@@ -14,9 +14,8 @@ export default function Tables() {
         const getAgentProduct = async () => {
             setLoading(true)
             try {
-
-                const res = await publicRequest.get("/product/agent/")
-                setProductData(res.data)
+                const res = await publicRequest.get((type === 'personal') ? "/product/agent/" :  '/super/product/get')
+                setProductData(res.data.data)
                 setLoading(false)
             } catch (error) {
                 setLoading(false)
@@ -86,7 +85,7 @@ export default function Tables() {
                                         <td className="px-6 py-4">{data.price}</td>
                                         <td className="px-6 py-4">{data.unit}</td>
                                         <td className="px-6 py-4 text-right">
-                                            <Link to={`/admin/update?id=${data._id}`}>
+                                            <Link to={`/super/product/update?id=${data._id}`}>
                                                 <p className="font-medium text-blue-600 sdark:text-blue-500 hover:underline">Edit</p>
                                             </Link>
                                         </td>

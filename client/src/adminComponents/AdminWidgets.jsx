@@ -5,9 +5,32 @@ import {
   SwitchHorizontalIcon,
   ViewGridAddIcon,
 } from "@heroicons/react/outline";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { publicRequest } from "../axioMethod";
 
 export default function AdminWidgets() {
+
+  const [allFields, setAllFields] = useState(0)
+
+  useEffect(() => {
+
+    const getTotalField = async () => {
+        
+      try {
+
+          const res = await publicRequest.get("/product/agent/")
+          setAllFields(res.data.length)
+      } catch (error) {
+          console.log(error)
+      }  
+         
+    }
+
+    getTotalField()
+
+  }, [])
+
   return (
     <div className="flexCenter flex-col gap-5 w-full">
       {/* TOTAL FIELDS */}
@@ -16,7 +39,7 @@ export default function AdminWidgets() {
           <h1 className="tracking-wide russo font-semibold text-xl text-gray-500">
             TOTAL FIELDS
           </h1>
-          <p className="font-extrabold text-5xl text-pink-800">50</p>
+          <p className="font-extrabold text-5xl text-pink-800">{allFields}</p>
         </div>
         <CollectionIcon className="h-20 text-gray-300" />
       </div>
