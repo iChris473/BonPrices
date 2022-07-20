@@ -79,7 +79,7 @@ export default function Description() {
         </div>
       </nav>
       {/* ABOUT SECTION */}
-      <div className="mt-7 flex flex-col gap-5 items-center justify-center w-full mx-auto max-w-[800px] mx-auto m-5 p-5 min-h-screen">
+      <div className="mt-7 flex flex-col gap-5 items-center justify-center w-full max-w-[800px] mx-auto m-5 p-5 min-h-screen">
         <div className="border border-gray-200 p-5 rounded-md shadow-md space-y-5 w-full m-5 sm:mx-auto max-w-[700px]">
           {/* PRICE TITLE */}
           
