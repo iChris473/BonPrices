@@ -30,7 +30,10 @@ const ProductSchema = new mongoose.Schema({
     agentId: {
         type: String,
         required: true
-    }
+    },
+    merchantName: String,
+    merchantNumber: String,
+    merchantAddress: String,
 
 }, {timestamps: true})
 

@@ -54,7 +54,17 @@
       .russo {
         font-family: 'Russo One', sans-serif;
       }
-    
+      
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+
+      /* Hide scrollbar for IE, Edge and Firefox */
+      .no-scrollbar {
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
+      }
       /* option {
         background: #1b1a1a !important;
         color: #d2e9ca !important;

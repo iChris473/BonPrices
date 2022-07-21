@@ -13,7 +13,11 @@ export default function AddProduct() {
   const price = useRef()
   const unit = useRef()
   const state = useRef()
+  const merchantAddress = useRef()
+  const merchantName = useRef()
+  const merchantNumber = useRef()
   const chooseImg = useRef()
+
 
   const [allPictures, setAllPictures] = useState([])
   const [file, setFile] = useState(null)
@@ -57,11 +61,13 @@ export default function AddProduct() {
       description: desc.current.value,
       price: price.current.value,
       unit: unit.current.value,
-      state: state.current.value
+      state: state.current.value,
+      merchantName: merchantName.current.value,
+      merchantNumber: merchantNumber.current.value,
+      merchantAddress: merchantAddress.current.value,
     }
 
     let totalPictures = []
-    console.log(newProduct)
 
     try {
       
@@ -109,9 +115,7 @@ export default function AddProduct() {
 
   return (
     <div id="mainForm">
-      <h1 className="text-left text-2xl border-b border-green-400 w-[94%] mx-auto max-w-[850px] pb-2 font-bold text-green-600 my-10">
-        Add New Field
-      </h1>
+      <h1 className="text-left text-2xl border-b border-green-400 w-[94%] mx-auto max-w-[850px] pb-2 font-bold text-green-600 my-10">Add New Field</h1>
     <form onSubmit={handleSubmit} className="bg-gray-50 p-5 rounded-md shadow-lg w-full mx-auto max-w-[850px] bg-opacity-60">
       {/* TEXT AND INPUT SECTION */}
       <div className="shadow-lg rounded-md px-5 py-10 border-md flexCenter gap-8 flex-col w-full mx-auto max-w-[800px] bg-gray-50 bg-opacity-80">
@@ -257,12 +261,25 @@ export default function AddProduct() {
                 </option>
               </select>
           </div>
+          {/* MERCHANT NAME */}
+          <div className="w-full flex flex-col items-start justify-center gap-4">
+              <p className="font-semibold text-lg md:text-xl text-gray-600">Merchant's Name</p>
+              <input ref={merchantName} type="text" className="outline-none w-full max-w-[700px] border-b  border-pink-200 pb-2 bg-transparent" placeholder="Enter merchant's name" />
+          </div>
+          {/* MERCHANT PHONE NUMBER */}
+          <div className="w-full flex flex-col items-start justify-center gap-4">
+              <p className="font-semibold text-lg md:text-xl text-gray-600">Merchant's Number</p>
+              <input ref={merchantNumber} type="text" className="outline-none w-full max-w-[700px] border-b  border-pink-200 pb-2 bg-transparent" placeholder="Enter merchant's number" />
+          </div>
+          {/* MERCHANT ADDRESS */}
+          <div className="w-full flex flex-col items-start justify-center gap-4">
+              <p className="font-semibold text-lg md:text-xl text-gray-600">Merchant's Address</p>
+              <input ref={merchantAddress} type="text" className="outline-none w-full max-w-[700px] border-b  border-pink-200 pb-2 bg-transparent" placeholder="Enter merchant's number" />
+          </div>
       </div>
       {/* IMAGE SECTION */}
       <div className="shadow-lg rounded-md px-5 py-10 border-md flexCenter gap-8 flex-col w-full mx-auto max-w-[800px] bg-gray-100 mt-20 bg-opacity-80">
-        <h1 className="text-left text-xl border-b border-green-400 font-bold text-green-600 w-full">
-            Add Pictures
-        </h1>
+        <h1 className="text-left text-xl border-b border-green-400 font-bold text-green-600 w-full">Add Pictures</h1>
         {/* RENDER SELECTED PICTURES */}
           {
             allPictures?.map(pic => (

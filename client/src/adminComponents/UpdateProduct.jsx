@@ -14,6 +14,9 @@ export default function AddProduct() {
   const price = useRef()
   const unit = useRef()
   const state = useRef()
+  const merchantAddress = useRef()
+  const merchantName = useRef()
+  const merchantNumber = useRef()
   const chooseImg = useRef()
 
   const [allPictures, setAllPictures] = useState([])
@@ -94,7 +97,10 @@ export default function AddProduct() {
       description: desc.current.value,
       price: price.current.value,
       unit: unit.current.value,
-      state: state.current.value
+      state: state.current.value,
+      merchantName: merchantName.current.value,
+      merchantNumber: merchantNumber.current.value,
+      merchantAddress: merchantAddress.current.value,
     }
 
     let totalNewPictures = []
@@ -341,6 +347,21 @@ export default function AddProduct() {
                       Zamfara
                     </option>
                   </select>
+              </div>
+              {/* MERCHANT NAME */}
+              <div className="w-full flex flex-col items-start justify-center gap-4">
+                  <p className="font-semibold text-lg md:text-xl text-gray-600">Merchant's Name</p>
+                  <input ref={merchantName} type="text" defaultValue={productData?.merchantName} className="outline-none w-full max-w-[700px] border-b  border-pink-200 pb-2 bg-transparent" placeholder="Enter merchant's name" />
+              </div>
+              {/* MERCHANT PHONE NUMBER */}
+              <div className="w-full flex flex-col items-start justify-center gap-4">
+                  <p className="font-semibold text-lg md:text-xl text-gray-600">Merchant's Number</p>
+                  <input ref={merchantNumber} type="text" defaultValue={productData?.merchantNumber} className="outline-none w-full max-w-[700px] border-b  border-pink-200 pb-2 bg-transparent" placeholder="Enter merchant's number" />
+              </div>
+              {/* MERCHANT ADDRESS */}
+              <div className="w-full flex flex-col items-start justify-center gap-4">
+                  <p className="font-semibold text-lg md:text-xl text-gray-600">Merchant's Address</p>
+                  <input ref={merchantAddress} type="text" defaultValue={productData?.merchantAddress} className="outline-none w-full max-w-[700px] border-b  border-pink-200 pb-2 bg-transparent" placeholder="Enter merchant's number" />
               </div>
           </div>
           {/* IMAGE SECTION */}

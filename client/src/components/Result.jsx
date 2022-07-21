@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Result({data}) {
   return (
-    <div>
+    <div className="w-full mx-auto max-w-[1000px]">
       {/* PRICE TITLE */}
         <h1 className="text-[#a8039b] w-fit cursor-pointer hover:underline decoration-[#a8039b] font-semibold text-xl md:text-2xl">
           <Link to={`/description#?id=${data._id}`}>{data.title}</Link>
