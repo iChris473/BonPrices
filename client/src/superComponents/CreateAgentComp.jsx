@@ -8,29 +8,15 @@ import { publicRequest } from "../axioMethod.js";
 
 export default function CreateAgentCommp() {
 
-  const title = useRef()
-  const desc = useRef()
-  const price = useRef()
-  const unit = useRef()
-  const state = useRef()
-  const chooseImg = useRef()
+  const email = useRef()
+  const password = useRef()
+  const confirmPassword = useRef()
+  
 
-  const [allPictures, setAllPictures] = useState([])
-  const [file, setFile] = useState(null)
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [err, setErr] = useState('')
 
-  const handleImage = e => {
-    // If no image selected, return
-    if (!/^image\//.test(e.target.files[0].type)) {
-        console.log(`File ${e.target.files[0].name} is not an image.`);
-        return false;
-    }
-    // console.log(allPictures)
-    setAllPictures([...allPictures, e.target.files[0]])
-    setFile(e.target.files[0])
-  } 
 
   const timeout = () => {
     setTimeout(() => {
@@ -42,39 +28,24 @@ export default function CreateAgentCommp() {
   const handleSubmit = async e => {
 
     e.preventDefault()
+    
+    if (password.current.value != confirmPassword.current.value) {
+      setErr("Passwords doesn't match");
+      timeout();
+      return;
+    }
 
     setLoading(true)
     
     const newProduct = {
-      title: title.current.value, 
-      description: desc.current.value,
-      price: price.current.value,
-      unit: unit.current.value,
-      state: state.current.value
+      email: email.current.value,
+      password: password.current.value
     }
 
-    let totalPictures = []
-    console.log(newProduct)
-
     try {
-      
-      for(const pic of allPictures){
-        const firebaseImageRef = ref(storage, `${pic.name}`);
-        const metadata = {
-          contentType: "image/jpeg",
-        };
-        // const uploadTask = uploadBytes(storageRef, file, metadata)
-        await uploadBytes(firebaseImageRef, pic, metadata).then(
-          async (snapshot) => {
-            const downloadURL = await getDownloadURL(firebaseImageRef);
-            totalPictures.push(downloadURL)
-            newProduct.picture = totalPictures;
-          }
-        );
-      
-      }  
-      console.log(newProduct)
-      await publicRequest.post("/product/create", newProduct)
+       
+    
+      await publicRequest.post("/agent/create", newProduct)
       setLoading(false)
       setSuccess(true)
       window.location.href = '#mainForm'
@@ -83,11 +54,10 @@ export default function CreateAgentCommp() {
 
       // CLEAR FIELDS
       setAllPictures([])
-      title.current.value = ''
-      desc.current.value = ''
-      price.current.value = ''
-      unit.current.value = ''
-      state.current.value = ''
+      email.current.value = ''
+      password.current.value = ''
+      confirmPassword.current.value = ''
+      
       
     } catch (error) {
       setLoading(false)
@@ -113,17 +83,17 @@ export default function CreateAgentCommp() {
           {/* AGENT EMAIL */}
           <div className="w-full flex flex-col items-start justify-center gap-4">
               <p className="font-semibold text-lg md:text-xl text-gray-600">Agent's Email</p>
-              <input required ref={title} type="email" className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="Enter agent's email" />
+              <input required ref={email} type="email" className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="Enter agent's email" />
           </div>
           {/* AGENT PASSWORD */}
           <div className="w-full flex flex-col items-start justify-center gap-4">
               <p className="font-semibold text-lg md:text-xl text-gray-600">Create Password</p>
-              <input required ref={desc} type="password" className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="********" />
+              <input required ref={password} type="password" className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="********" />
           </div>
           {/* PRODUCT DESCRIPTION */}
           <div className="w-full flex flex-col items-start justify-center gap-4">
               <p className="font-semibold text-lg md:text-xl text-gray-600">Confirm Password</p>
-              <input required ref={desc} type="password" className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="********" />
+              <input required ref={confirmPassword} type="password" className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="********" />
           </div>
       </div>
       {/* SUBMIT BUTTON */}
