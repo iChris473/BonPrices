@@ -37,8 +37,8 @@ import {
         {/* TOTAL FIELDS */}
         <div className="flexBetween shadow-lg rounded-md px-5 py-10 border border-pink-200  w-[95%] bg-gray-100 max-w-[700px] mx-auto">
           <div className="space-y-5">
-            <h1 className="tracking-wide russo font-semibold text-xl text-gray-500">
-              TOTAL AGENTS
+            <h1 className="tracking-wide russo text-xl text-gray-600">
+              TOTAL FIELD AGENTS
             </h1>
             <p className="font-extrabold text-5xl text-pink-800">{allFields}</p>
           </div>
@@ -48,7 +48,7 @@ import {
         <div className="flexBetween shadow-lg rounded-md px-5 py-10 border border-pink-200  w-[95%] bg-gray-100 max-w-[700px] mx-auto">
           <Link to="/admin/myfields">
             <div className="space-y-5">
-              <h1 className="tracking-wide russo font-semibold text-xl text-gray-500">
+              <h1 className="tracking-wide russo text-xl text-gray-600">
                 VIEW ALL AGENTS
               </h1>
               <ViewGridAddIcon className="font-extrabold h-14 text-pink-800" />
@@ -60,8 +60,8 @@ import {
         <div className="flexBetween shadow-lg rounded-md px-5 py-10 border border-pink-200  w-[95%] bg-gray-100 max-w-[700px] mx-auto">
           <Link to="/admin/newfield">
             <div className="space-y-5">
-              <h1 className="tracking-wide russo font-semibold text-xl text-gray-500">
-                CREATE NEW AGENT
+              <h1 className="tracking-wide russo text-xl text-gray-600">
+                CREATE NEW FIELD AGENT
               </h1>
               <CursorClickIcon className="font-extrabold h-14 text-pink-800 rotate-90" />
             </div>

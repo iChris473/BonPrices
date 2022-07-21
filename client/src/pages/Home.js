@@ -25,7 +25,7 @@ export default function Home() {
 
     try {
       
-      const res = await publicRequest.get(`/product/search?q=${e.target.value}`)
+      const res = await publicRequest.get(`/product/search#?q=${e.target.value}`)
   
       setSearchInput(res.data)
 
@@ -44,13 +44,13 @@ export default function Home() {
         alt=""
       />
       {/* SIGN IN BUTTON */}
-      {/* <button className="text-white rounded-md text-white p-2 bg-[#a8039b] font-bold absolute top-5 right-5">
+      {/* <button className="text-white rounded-md p-2 bg-[#a8039b] font-bold absolute top-5 right-5">
         Sign in
       </button> */}
-      <form onSubmit={e => { e.preventDefault(); navigate(`/search?q=${query.current.value}${state.current.value && "&state="+state.current.value}`) }} className="min-h-screen pt-10 flex-col">
+      <form onSubmit={e => { e.preventDefault(); navigate(`/search#?q=${query.current.value}${state.current.value && "&state="+state.current.value}`) }} className="min-h-screen pt-5 flex-col">
         {/* LOGO SECTION */}
-        <div className="flexCenter flex-col">
-          <img src={require("../images/plogo.png")} className="h-52 object-contain" alt="" />
+        <div className="flex items-center flex-col">
+          <img src={require("../images/plogo.png")} className="h-40 object-contain" alt="" />
           <h1 className="text-[#a8039b] font-extrabold text-4xl"> Pricedatabase </h1>
           <p className="text-gray-500 text-xs md:text-md text-center"> Get the actual price of any product in any Nigerian State</p>
         </div>
@@ -195,7 +195,7 @@ export default function Home() {
             <div className='w-full flexCenter flex-between gap-3 flex-col mt-2 border-t border-[#d6a7d2] p-2'>
               {
                 searchInput.map(field => (
-                  <div key={field._id} onClick={() => navigate(`/search?q=${field.title}${state.current.value && "&state="+state.current.value}`)} className='flexCenter w-full hover:bg-gray-500 hover:bg-opacity-10 rounded cursor-pointer p-2'>
+                  <div key={field._id} onClick={() => navigate(`/search#?q=${field.title}${state.current.value && "&state="+state.current.value}`)} className='flexCenter w-full hover:bg-gray-500 hover:bg-opacity-10 rounded cursor-pointer p-2'>
                     <SearchIcon className="h-5 text-gray-400" />
                     <p className='w-full flex-1 text-left ml-5'>{field.title}</p>
                   </div>

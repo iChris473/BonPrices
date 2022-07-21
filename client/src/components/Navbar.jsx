@@ -49,7 +49,7 @@ export default function Navbar({setRefresh, refresh}) {
         <p className="text-gray-500 font-semibold text-sm md:text-md text-right w-[70%] mx-auto max-w-[600px]">
           Filter location
         </p>
-        <form onSubmit={e => { e.preventDefault(); navigate(`/search?q=${query.current.value}${state.current.value && "&state="+state.current.value}`); setRefresh(!refresh); setSearchInput([]); query.current.value = "" }} className='flexCenter w-[90%] mx-auto max-w-[700px]'>
+        <form onSubmit={e => { e.preventDefault(); navigate(`/search#?q=${query.current.value}${state.current.value && "&state="+state.current.value}`); setRefresh(!refresh); setSearchInput([]); query.current.value = "" }} className='flexCenter w-[90%] mx-auto max-w-[700px]'>
           <div className='border border-[#d6a7d2] w-[90%] mx-auto max-w-[700px] p-3 rounded-lg flexCenter flex-col'>
             {/* INPUT SECTION */}
             <div className="w-full flexBetween gap-3">
@@ -186,7 +186,7 @@ export default function Navbar({setRefresh, refresh}) {
               <div className='w-full flexCenter flex-between gap-3 flex-col mt-2 border-t border-[#d6a7d2] p-2'>
                 {
                   searchInput.map(field => (
-                    <div key={field._id} onClick={() => { navigate(`/search?q=${field.title}${state.current.value && "&state="+state.current.value}`); setRefresh(!refresh); setSearchInput([]); query.current.value = "" }} className='flexCenter w-full hover:bg-gray-500 hover:bg-opacity-10 rounded cursor-pointer p-2'>
+                    <div key={field._id} onClick={() => { navigate(`/search#?q=${field.title}${state.current.value && "&state="+state.current.value}`); setRefresh(!refresh); setSearchInput([]); query.current.value = "" }} className='flexCenter w-full hover:bg-gray-500 hover:bg-opacity-10 rounded cursor-pointer p-2'>
                       <SearchIcon className="h-5 text-gray-400" />
                       <p className='w-full flex-1 text-left ml-5'>{field.title}</p>
                     </div>
@@ -195,7 +195,9 @@ export default function Navbar({setRefresh, refresh}) {
               </div>
             }
           </div>
-          <SearchIcon type='submit' className="h-10 cursor-pointer rotate-90 ml-0 text-pink-500" />
+          <button>
+            <SearchIcon className="h-10 cursor-pointer rotate-90 ml-0 text-pink-500" />
+          </button>
         </form>
 
         {/* <div className="flexCenter w-[90%] mx-auto max-w-[700px]">

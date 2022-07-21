@@ -15,7 +15,7 @@ export default function Result({data}) {
           {data.description}
           </p>
           {/* PRICE COST PER UNIT */}
-          <p className="font-bold text-lg text-gray-700">NGN {data.price.toLocaleString()} per unit</p>
+          <p className="font-bold text-lg text-gray-700">NGN {parseFloat(data?.price).toLocaleString()} per {data.unit}</p>
         </div>
         <img
           src={data.picture[0]}

@@ -1,0 +1,13 @@
+
+1. DEACTIVATE ACCOUNT
+
+FIELD AGENT INFO
+- STATE OF RESIDENCE *
+- ADDRESS *
+- 
+
+3. MERCHANT EMAIL *
+4. NOT FOUND MESSAGE 
+5. toLocaleString in price *
+6. Floating of header in search bar *
+7. Per unit update *

@@ -66,7 +66,7 @@ export default function Description() {
     slider.scrollLeft = slider.scrollLeft + slideImg.clientWidth
   
   }
-  console.log(product)
+
   return (
     <div className="relative">
       {/* BACKGROUND IMAGE */}
@@ -105,7 +105,7 @@ export default function Description() {
             {product?.description}
           </p>
           {/* PRICE COST PER UNIT */}
-          <p className="font-bold text-lg text-gray-700">NGN {product?.price?.toLocaleString()} per unit</p>
+          <p className="font-bold text-lg text-gray-700">NGN {parseFloat(product?.price).toLocaleString()} per {product?.unit}</p>
         </div>
         <div className="relative flex items-center">
           <ChevronLeftIcon onClick={scrollLeft} className="h-10 opacity-50 hover:opacity-100 cursor-pointer hover:scale-110" />
@@ -129,6 +129,7 @@ export default function Description() {
           <p className="text-gray-500 text-md md:text-lg tracking-wide text-left">{product?.merchantNumber}</p>
           {/* MERCHANT ADDRESS */}
           <p className="text-gray-500 text-md md:text-lg tracking-wide text-left">{product?.merchantAddress}</p>
+          <p className="text-gray-500 text-md md:text-lg tracking-wide text-left">{product?.merchantEmail}</p>
         </div>
       </div>
       <Footer />

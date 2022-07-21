@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Loading from "../components/Loading";
 import Navbar from "../components/Navbar";
 import Result from "../components/Result";
+import NotFound from "../components/NotFound";
 import { publicRequest } from '../axioMethod'
 
 export default function Search() {
@@ -64,9 +65,14 @@ export default function Search() {
           isLloading ? <Loading /> : (
             <div className="space-y-8">
               {
+                (allResult.length !== 0) ?
                 allResult.map(result => (
                   <Result key={result._id} data={result} />
-                ))
+                )) : 
+                  <div className="flexCenter w-[85%] mx-auto flex-col gap-5">
+                    <NotFound />
+                    <p className="text-xl md:text-2xl tracking-wider font-semibold text-gray-500">Oops! No result found in this state</p>
+                  </div>
               }
             </div>
           )

@@ -17,6 +17,7 @@ export default function AddProduct() {
   const merchantAddress = useRef()
   const merchantName = useRef()
   const merchantNumber = useRef()
+  const merchantEmail = useRef()
   const chooseImg = useRef()
 
   const [allPictures, setAllPictures] = useState([])
@@ -101,6 +102,7 @@ export default function AddProduct() {
       merchantName: merchantName.current.value,
       merchantNumber: merchantNumber.current.value,
       merchantAddress: merchantAddress.current.value,
+      merchantEmail: merchantEmail.current.value,
     }
 
     let totalNewPictures = []
@@ -208,7 +210,7 @@ export default function AddProduct() {
               {/* PRODUCT TITLE */}
               <div className="w-full flex flex-col items-start justify-center gap-4">
                   <p className="font-semibold text-lg md:text-xl text-gray-600">Title</p>
-                  <input ref={title} type="text" defaultValue={productData?.title} className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="Enter product title" />
+                  <input required ref={title} type="text" defaultValue={productData?.title} className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="Enter product title" />
               </div>
               {/* PRODUCT DESCRIPTION */}
               <div className="w-full flex flex-col items-start justify-center gap-4">
@@ -218,12 +220,12 @@ export default function AddProduct() {
               {/* PRODUCT PRICE */}
               <div className="w-full flex flex-col items-start justify-center gap-4">
                   <p className="font-semibold text-lg md:text-xl text-gray-600">Price (NGN)</p>
-                  <input ref={price} type="number" defaultValue={productData?.price} className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="Enter product price" />
+                  <input required ref={price} type="number" defaultValue={productData?.price} className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="Enter product price" />
               </div>
               {/* PRODUCT UNIT */}
               <div className="w-full flex flex-col items-start justify-center gap-4">
                   <p className="font-semibold text-lg md:text-xl text-gray-600">Unit</p>
-                  <input ref={unit} type="text" defaultValue={productData?.unit} className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="e.g. square meters, per product, etc" />
+                  <input required ref={unit} type="text" defaultValue={productData?.unit} className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="e.g. square meters, per product, etc" />
               </div>
               {/* PRODUCT STATE */}
               <div className="w-full flex flex-col items-start justify-center gap-4">
@@ -351,17 +353,22 @@ export default function AddProduct() {
               {/* MERCHANT NAME */}
               <div className="w-full flex flex-col items-start justify-center gap-4">
                   <p className="font-semibold text-lg md:text-xl text-gray-600">Merchant's Name</p>
-                  <input ref={merchantName} type="text" defaultValue={productData?.merchantName} className="outline-none w-full max-w-[700px] border-b  border-pink-200 pb-2 bg-transparent" placeholder="Enter merchant's name" />
+                  <input required ref={merchantName} type="text" defaultValue={productData?.merchantName} className="outline-none w-full max-w-[700px] border-b  border-pink-200 pb-2 bg-transparent" placeholder="Enter merchant's name" />
               </div>
               {/* MERCHANT PHONE NUMBER */}
               <div className="w-full flex flex-col items-start justify-center gap-4">
                   <p className="font-semibold text-lg md:text-xl text-gray-600">Merchant's Number</p>
-                  <input ref={merchantNumber} type="text" defaultValue={productData?.merchantNumber} className="outline-none w-full max-w-[700px] border-b  border-pink-200 pb-2 bg-transparent" placeholder="Enter merchant's number" />
+                  <input required ref={merchantNumber} type="text" defaultValue={productData?.merchantNumber} className="outline-none w-full max-w-[700px] border-b  border-pink-200 pb-2 bg-transparent" placeholder="Enter merchant's number" />
               </div>
               {/* MERCHANT ADDRESS */}
               <div className="w-full flex flex-col items-start justify-center gap-4">
                   <p className="font-semibold text-lg md:text-xl text-gray-600">Merchant's Address</p>
-                  <input ref={merchantAddress} type="text" defaultValue={productData?.merchantAddress} className="outline-none w-full max-w-[700px] border-b  border-pink-200 pb-2 bg-transparent" placeholder="Enter merchant's number" />
+                  <input required ref={merchantAddress} type="text" defaultValue={productData?.merchantAddress} className="outline-none w-full max-w-[700px] border-b  border-pink-200 pb-2 bg-transparent" placeholder="Enter merchant's address" />
+              </div>
+              {/* MERCHANT EMAIL */}
+              <div className="w-full flex flex-col items-start justify-center gap-4">
+                  <p className="font-semibold text-lg md:text-xl text-gray-600">Merchant's Email(optional)</p>
+                  <input ref={merchantEmail} type="text" defaultValue={productData?.merchantEmail} className="outline-none w-full max-w-[700px] border-b  border-pink-200 pb-2 bg-transparent" placeholder="Enter merchant's email" />
               </div>
           </div>
           {/* IMAGE SECTION */}

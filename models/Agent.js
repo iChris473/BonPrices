@@ -24,7 +24,13 @@ const AgentSchema = new mongoose.Schema({
     },
     name: {
         type: String
-    }
+    },
+    residentState: {
+        type: String
+    },
+    address: {
+        type: String
+    },
 
 }, {timestamps: true})
 
