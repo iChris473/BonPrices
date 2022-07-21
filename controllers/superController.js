@@ -212,6 +212,23 @@ exports.updateAgent = async (req, res) => {
 
 }
 
+// DELETE AGENT
+exports.deleteAgent = async (req, res) => {
+
+    try {
+
+        await Agent.findByIdAndDelete(req.params.id)
+        
+        return res.status(200).json("Agent Deleted")
+ 
+     } catch (error) {
+         
+         return res.status(400).json(error)
+     
+     }
+
+}
+
 
 // LOGOUT 
 exports.logOut = async (req, res) => {
@@ -252,3 +269,4 @@ exports.getAllProducts = async (req, res) => {
     }
 
 }
+

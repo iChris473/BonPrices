@@ -105,7 +105,7 @@ export default function AddProduct() {
     // confirm("Are you sure you want to log out?");
     if (window.confirm("Confirm Delete?")) {
       try {
-        await publicRequest.delete(`/product/delete/${agentId}`)
+        await publicRequest.delete(`/agent/delete/auth/${agentId}`)
         setDeleteProduct(true)
     } catch (error) {
         console.log(error)
@@ -122,7 +122,7 @@ export default function AddProduct() {
         <h1 className="text-left text-2xl border-b border-pink-300 flex-1 mx-auto pb-2 font-bold text-pink-700 my-10">
           Update Agent
         </h1>
-        {/* <button onClick={handleDeleteProduct} className="border border-red-500 py-1 px-5 rounded-md text-gray-600 text-md font-semibold">Delete</button> */}
+        <button onClick={handleDeleteProduct} className="border border-red-500 py-1 px-5 rounded-md text-gray-600 text-md font-semibold">Delete</button>
       </div>
       {
         loadingProduct ? 

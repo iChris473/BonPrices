@@ -57,12 +57,12 @@ export default function AdminSidebar() {
           <p className="text-gray-500 font-semibold flex-1 text-md">Password</p>
         </div>
       </Link>
-      <Link to="/admin/email">
+      {/* <Link to="/admin/email">
         <div className="flexBetween w-full gap-3">
           <PlusIcon className="text-pink-600 h-5" />
           <p className="text-gray-500 font-semibold flex-1 text-md">Edit Email</p>
         </div>
-      </Link>
+      </Link> */}
       <div onClick={logOutFunction} className="cursor-pointer flexBetween w-full gap-3">
         <PlusIcon className="text-pink-600 h-5" />
         <p className="text-gray-500 font-semibold flex-1 text-md">Log Out</p>

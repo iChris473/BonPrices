@@ -74,6 +74,8 @@ router.get("/super/agent/all", superAuth, superController.getAllAgents)
 router.get("/super/agent/one/:id", superAuth, superController.getOneAgent)
 // UPDATE ONE AGENT
 router.put("/super/agent/update/:id", superAuth, superController.updateAgent)
+// DELETE AGENT
+router.delete("/agent/delete/auth/:id", superAuth, superController.deleteAgent)
 // GET ALL PRODUCTS
 router.get("/super/product/get", superAuth, superController.getAllProducts)
 

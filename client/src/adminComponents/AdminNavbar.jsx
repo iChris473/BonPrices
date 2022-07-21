@@ -13,7 +13,7 @@ export default function AdminNavbar({mobile, setMobile}) {
             className="h-20 object-contain"
             alt=""
           />
-          <h1 className="russo text-gray-500 text-2xl font-semobild">Admin</h1>
+          <h1 className="russo text-gray-500 text-xl md:text-2xl font-semobild">Field Agent Dashboard</h1>
         </div>
       </Link>
       <div>
