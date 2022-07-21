@@ -43,13 +43,6 @@ export default function CreateAgentCommp() {
 
     e.preventDefault()
 
-    if(!title || !desc || !price || !unit || (allPictures.length == 0)){
-      setErr('Please fill all fields')
-      window.location.href = '#mainForm'
-      timeout()
-      return
-    }
-
     setLoading(true)
     
     const newProduct = {
