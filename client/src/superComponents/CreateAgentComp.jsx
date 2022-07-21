@@ -77,7 +77,7 @@ export default function CreateAgentCommp() {
     <form onSubmit={handleSubmit} className="bg-gray-50 p-5 rounded-md shadow-lg w-full mx-auto max-w-[850px] bg-opacity-60">
       {/* TEXT AND INPUT SECTION */}
       <div className="shadow-lg rounded-md px-5 py-10 border-md flexCenter gap-8 flex-col w-full mx-auto max-w-[800px] bg-gray-50 bg-opacity-80">
-          {success && <p className="text-white bg-green-500 p-4 rounded-md w-full font-bold text-xl text-center mt-5">Product Uploaded Successfully</p> }
+          {success && <p className="text-white bg-green-500 p-4 rounded-md w-full font-bold text-xl text-center mt-5">Account created Successfully</p> }
           {err && <p className="text-white bg-red-500 p-4 rounded-md w-full font-bold text-xl text-center mt-5">{err}</p> }
           {/* AGENT EMAIL */}
           <div className="w-full flex flex-col items-start justify-center gap-4">
