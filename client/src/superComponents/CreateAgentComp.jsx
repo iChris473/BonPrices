@@ -53,7 +53,6 @@ export default function CreateAgentCommp() {
       timeout()
 
       // CLEAR FIELDS
-      setAllPictures([])
       email.current.value = ''
       password.current.value = ''
       confirmPassword.current.value = ''
