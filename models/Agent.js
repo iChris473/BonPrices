@@ -31,6 +31,10 @@ const AgentSchema = new mongoose.Schema({
     address: {
         type: String
     },
+    deactivated: {
+        type: Boolean,
+        default: false
+    }
 
 }, {timestamps: true})
 

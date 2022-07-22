@@ -1,5 +1,6 @@
 
 const jwt = require("jsonwebtoken")
+const Agent = require("../models/Agent")
 
 const auth = async (req, res, next) => {
 
@@ -9,7 +10,7 @@ const auth = async (req, res, next) => {
 
         if(!token) return res.status(401).json('Unauthorized')
 
-        jwt.verify(token, process.env.JWTSECRET, (err, user) => {
+        jwt.verify(token, process.env.JWTSECRET, async (err, user) => {
 
             if(err){
                 jwt.verify(token, process.env.SUPER_SECRET, (error, superAdmin) => {
@@ -20,6 +21,12 @@ const auth = async (req, res, next) => {
                     
                 })
             } else {
+
+                const agent = await Agent.findById(user.id)
+
+                if(!agent) return res.status(401).json('Account does not exist')
+        
+                if(agent.deactivated) return res.redirect("/admin/deactivated")
 
                 req.userId = user.id
             }

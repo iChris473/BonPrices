@@ -33,6 +33,7 @@ import AllProducts from './superPages/AllProducts';
 import UpdateSuperProduct from './superPages/UpdateSuperProduct';
 import SuperNewField from './superPages/SuperNewField';
 import MySuperField from './superPages/MySuperField';
+import Deactivated from './adminPages/Deactivated';
 
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
         <Route path="/admin/login"  element={!loggedIn ? <AdminLogin /> : <Navigate to="/admin" /> } />
         <Route path="/admin/profile"  element={loggedIn ? <AdminProfile /> : <Navigate to="/admin/login" /> } />
         <Route path="/admin/update"  element={loggedIn ? <UpdateField /> : <Navigate to="/admin/login" /> } />
+        <Route path="/admin/deactivated"  element={ <Deactivated /> } />
 
         {/* SUPER ADMIN ROUTES */}
         <Route path="/super/page"  element={ loggedIn ? <SuperAdminHome /> : <Navigate to="/super/login" /> } /> 

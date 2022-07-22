@@ -10,6 +10,8 @@ const AuthContextProvider = ({children}) => {
     
     const [loggedIn, setLoggedIn] = useState(true)
 
+    const [networkError, setNetworkError] = useState(true)
+
     const getLoggedIn = async () => {
 
         try {

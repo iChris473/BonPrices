@@ -79,6 +79,8 @@ exports.verifyloggedIn = async (req, res) => {
 
         if(!agent) return res.json(false)
 
+        if(agent.deactivated) return res.redirect("/deactivated")
+
         return res.json(true)
 
     } catch (error) {
@@ -122,6 +124,24 @@ exports.updateAgent = async (req, res) => {
           const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
           req.body.password = hashedPassword;
+
+        }
+
+        if(req.body.deactivated){
+            
+            try {
+        
+                const token = req.cookies.token
+        
+                if(!token) return res.status(401).json('Unauthorized')
+        
+                jwt.verify(token, process.env.SUPER_SECRET)
+        
+            } catch (error) {
+                
+                return res.status(401).json('Unauthorized')
+                
+            }
 
         }
         

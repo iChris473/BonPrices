@@ -17,6 +17,7 @@ export default function AddProduct() {
 
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [refresh, setRefresh] = useState(false)
   const [err, setErr] = useState('')
   
   const [productData, setProductData] = useState([])
@@ -48,7 +49,7 @@ export default function AddProduct() {
 
     getAgentProduct()
 
-  }, [])
+  }, [refresh])
 
   // TIMEOUT FUNCTION
   const timeout = () => {
@@ -77,7 +78,6 @@ export default function AddProduct() {
         newProduct.email = email.current.value
     }
     
-    console.log(newProduct)
     try {
 
       const res = await publicRequest.put(`/super/agent/update/${agentId}`, newProduct)
@@ -103,7 +103,7 @@ export default function AddProduct() {
 
   const handleDeleteProduct = async () => {
     // confirm("Are you sure you want to log out?");
-    if (window.confirm("Confirm Delete?")) {
+   if (window.confirm("Confirm Delete?")) {
       try {
         await publicRequest.delete(`/agent/delete/auth/${agentId}`)
         setDeleteProduct(true)
@@ -111,18 +111,62 @@ export default function AddProduct() {
         console.log(error)
     }
 
-    } else {
+    } else { 
       return;
     }
   }
 
+  const deactivateAccount = async () => {
+
+    if (window.confirm("Deactivate Account?")) {
+      
+      try {
+
+          await publicRequest.put(`/super/agent/update/${agentId}`, {deactivated: true})
+          setRefresh(!refresh)
+
+      } catch (error) {
+          setErr(error.response.data)
+          window.location.href = '#mainForm'
+      }
+
+    } else { 
+      return;
+    }
+
+  }
+
+  const activateAccount = async () => {
+
+    if (window.confirm("Activate Account?")) {
+      
+      try {
+          
+        await publicRequest.put(`/super/agent/update/${agentId}`, {deactivated: false})
+        setRefresh(!refresh)
+
+      } catch (error) {
+        setErr(error.response.data)
+        window.location.href = '#mainForm'
+
+      }
+
+    } else { 
+      return;
+    }
+
+  }
+
   return (
     <div id="mainForm">
-      <div className="flexBetween w-[98%] mx-auto gap-5 m-5">
-        <h1 className="text-left text-2xl border-b border-pink-300 flex-1 mx-auto pb-2 font-bold text-pink-700 my-10">
+      <div className="flex items-center justify-start sm:justify-between flex-col sm:flex-row w-[98%] mx-auto gap-2 sm:gap-5 m-5 my-10">
+        <h1 className="w-full sm:w-auto text-left text-2xl border-b border-pink-300 flex-1 mx-auto pb-2 font-bold text-pink-700">
           Update Agent
         </h1>
-        <button onClick={handleDeleteProduct} className="border border-red-500 py-1 px-5 rounded-md text-gray-600 text-md font-semibold">Delete</button>
+        <div className="flex items-center justify-end gap-2 sm:w-auto w-full">
+          <button onClick={productData?.deactivated ? activateAccount : deactivateAccount} className={`border ${productData?.deactivated ? 'bg-green-500' : "bg-pink-500"} py-1 px-5 rounded-md text-white text-sm font-semibold`}>{productData?.deactivated ? "Activate Account" : "Deactivate Account"}</button>
+          <button onClick={handleDeleteProduct} className="border border-red-500 py-1 px-5 rounded-md text-gray-600 text-md font-semibold">Delete</button>
+        </div>
       </div>
       {
         loadingProduct ? 
