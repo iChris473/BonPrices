@@ -15,10 +15,37 @@ const AuthContextProvider = ({children}) => {
     const getLoggedIn = async () => {
 
         try {
+
             setAppLoading(true)
+
             const res = await publicRequest.get("/auth/loggedin")
+            
+            if(res.data.deactivated){
+                window.location.href = "/admin/deactivated"
+                return
+            }
+
             setLoggedIn(res.data)
+
             setAppLoading(false)
+
+        } catch (error) {
+            setAppLoading(false)
+        }
+
+    }
+    const getActivated = async () => {
+
+        try {
+
+            setAppLoading(true)
+
+            const res = await publicRequest.get("/auth/loggedin")
+            
+            if(!res.data.deactivated){
+                window.location.href = "/admin#"
+                return
+            }
 
         } catch (error) {
             setAppLoading(false)
@@ -27,7 +54,7 @@ const AuthContextProvider = ({children}) => {
     }
 
     useEffect(() => {
-        getLoggedIn()
+        window.location.href.includes("deactivated") ? getActivated() : getLoggedIn()
     }, [])
 
     return (

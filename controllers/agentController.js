@@ -79,7 +79,7 @@ exports.verifyloggedIn = async (req, res) => {
 
         if(!agent) return res.json(false)
 
-        if(agent.deactivated) return res.redirect("/deactivated")
+        if(agent.deactivated) return res.status(200).json({deactivated: true})
 
         return res.json(true)
 

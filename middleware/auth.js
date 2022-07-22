@@ -26,7 +26,7 @@ const auth = async (req, res, next) => {
 
                 if(!agent) return res.status(401).json('Account does not exist')
         
-                if(agent.deactivated) return res.redirect("/admin/deactivated")
+                if(agent.deactivated) return res.status(200).json({deactivated: true})
 
                 req.userId = user.id
             }
