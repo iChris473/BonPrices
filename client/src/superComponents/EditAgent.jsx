@@ -1,5 +1,5 @@
 
-import { ArrowLeftIcon, XCircleIcon } from "@heroicons/react/outline";
+import { ArrowLeftIcon, CogIcon, XCircleIcon } from "@heroicons/react/outline";
 import { CameraIcon, XIcon } from "@heroicons/react/solid";
 import { useState, useRef, useEffect } from "react";
 import { ref, getDownloadURL, uploadBytes, deleteObject } from "firebase/storage";
@@ -14,10 +14,12 @@ export default function AddProduct() {
   const phone = useRef()
   const lga = useRef()
   const state = useRef()
+  const password = useRef()
 
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [refresh, setRefresh] = useState(false)
+  const [updatePassMode, setUpdatePassMode] = useState(false)
   const [err, setErr] = useState('')
   
   const [productData, setProductData] = useState([])
@@ -66,27 +68,37 @@ export default function AddProduct() {
 
     
     setLoading(true)
+
+    let newProduct = {}
     
-    var newProduct = {
-        name: agentName.current.value, 
-        phone: phone.current.value,
-        lga: lga.current.value,
-        state: state.current.value
-    }
+    if(updatePassMode){
+      
+      newProduct = {password: password.current.value}
+
+    } else {
+
+      newProduct = {
+          name: agentName.current.value, 
+          phone: phone.current.value,
+          lga: lga.current.value,
+          state: state.current.value
+      }
+      
+      if(productData?.email !== email.current.value){
+          newProduct.email = email.current.value
+      }
     
-    if(productData?.email !== email.current.value){
-        newProduct.email = email.current.value
     }
     
     try {
 
       const res = await publicRequest.put(`/super/agent/update/${agentId}`, newProduct)
-      console.log(res.data)
       setLoading(false)
       setSuccess(true)
       window.location.href = '#mainForm'
       setErr('')
       timeout()
+      password.current.value = ""
       
     } catch (error) {
 
@@ -175,7 +187,9 @@ export default function AddProduct() {
         </div> :
         <form onSubmit={handleSubmit} className="bg-gray-50 p-5 rounded-md shadow-lg w-full mx-auto max-w-[850px] bg-opacity-60">
           {/* TEXT AND INPUT SECTION */}
-          <div className="shadow-lg rounded-md px-5 py-10 border-md flexCenter gap-8 flex-col w-full mx-auto max-w-[800px] bg-gray-50 bg-opacity-80">
+          {
+            !updatePassMode ?
+           <div className="shadow-lg rounded-md px-5 py-10 border-md flexCenter gap-8 flex-col w-full mx-auto max-w-[800px] bg-gray-50 bg-opacity-80">
               {success && <p className="text-white bg-green-500 p-4 rounded-md w-full font-bold text-xl text-center mt-5">Agent Updated Successfully</p> }
               {err && <p className="text-white bg-red-500 p-4 rounded-md w-full font-bold text-xl text-center mt-5">{err}</p> }
               {/* PRODUCT agentName */}
@@ -321,6 +335,24 @@ export default function AddProduct() {
                     </option>
                   </select>
               </div>
+          </div> : 
+          <div className="shadow-lg rounded-md px-5 py-10 border-md flexCenter gap-8 flex-col w-full mx-auto max-w-[800px] bg-gray-50 bg-opacity-80">
+            {success && 
+              <p className="text-white bg-green-500 p-4 rounded-md w-full font-bold text-xl text-center mt-5">Agent Updated Successfully</p> 
+            }
+            {err &&
+             <p className="text-white bg-red-500 p-4 rounded-md w-full font-bold text-xl text-center mt-5">{err}</p> 
+            }
+            {/* PRODUCT agentName */}
+            <div className="w-full flex flex-col items-start justify-center gap-4">
+                <p className="font-semibold text-lg md:text-xl text-gray-600">New Password</p>
+                <input ref={password} type="text" defaultValue='' required className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent" placeholder="Change agent password" />
+            </div>
+          </div>
+          }
+          <div onClick={() => setUpdatePassMode(!updatePassMode)} className="cursor-pointer border-pink-500 pb-2 border-b my-10 w-full mx-auto max-w-[250px] flexCenter gap-3">
+             <CogIcon className="text-pink-600 h-5" />
+             <p className="font-semibold text-pink-600 ">{updatePassMode ? "Cancel" : 'Change Password'} </p>
           </div>
           {/* SUBMIT BUTTON */}
           <button className="bg-gray-800 font-bold text-white p-5 rounded-md my-10 block w-full mx-auto max-w-[750px] shadow-lg">{loading ? 'Loading...' : 'SAVE CHANGES'}</button>

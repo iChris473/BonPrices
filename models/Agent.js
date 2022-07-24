@@ -53,4 +53,6 @@ AgentSchema.methods.getSignedToken = function(){
     return jwt.sign({id: this._id}, process.env.JWTSECRET, {expiresIn: '9999y'})
 }
 
+
+
 module.exports = mongoose.model("agent", AgentSchema)

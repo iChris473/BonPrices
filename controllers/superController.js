@@ -189,13 +189,18 @@ exports.updateAgent = async (req, res) => {
 
             const registered = await Agent.findOne({email: req.body.email})
 
-            if(registered) return res.status(401).json("An Account is registered with this email");
+            if(registered) return res.status(401).json("An Agent is registered with this email");
+
+        }
+        
+        if(req.body.password){
+
+            const salt = await bcrypt.genSalt(10)
+            const hashedPassword = await bcrypt.hash(req.body.password, salt)
+            req.body.password = hashedPassword
 
         }
 
-        // IF UPDATE CONTAINS PASSWORD
-        if (req.body.password) return res.status(401).json("Oops, an error occurred");
-        
         const update = await Agent.findOneAndUpdate(
             {
                 _id: req.params.id
