@@ -66,9 +66,6 @@ export default function Tables() {
                                     Unit
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Agent Email
-                                </th>
-                                <th scope="col" className="px-6 py-3">
                                     <span className="sr-only">Edit</span>
                                 </th>
                             </tr>
@@ -88,7 +85,6 @@ export default function Tables() {
                                         </td>
                                         <td className="px-6 py-4">{data.price}</td>
                                         <td className="px-6 py-4">{data.unit}</td>
-                                        <td className="px-6 py-4">{data.agentEmail || "N/A"}</td>
                                         <td className="px-6 py-4 text-right">
                                             <Link to={`/admin/update?id=${data._id}`}>
                                                 <p className="font-medium text-blue-600 sdark:text-blue-500 hover:underline">Edit</p>
