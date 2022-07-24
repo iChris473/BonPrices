@@ -216,7 +216,7 @@ export default function AddProduct() {
               <div className="w-full flex flex-col items-start justify-center gap-4">
                   <p className="font-semibold text-lg md:text-xl text-gray-600">State</p>
                   <select ref={state} className="outline-none w-full max-w-[700px] border-b border-pink-200 pb-2 bg-transparent">
-                    <option className="text-xs" value="All">
+                    <option className="text-xs" value={productData?.state}>
                       {productData?.state}
                     </option>
                     <option className="text-xs" value="All">

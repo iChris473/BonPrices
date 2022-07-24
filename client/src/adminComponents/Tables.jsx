@@ -28,19 +28,39 @@ export default function Tables() {
     
     }, [])
 
+    const dateString = (createdAt) => {
+
+        var date = new Date(createdAt)
+
+        const productDate = date.toLocaleString('en-GB', {day:'numeric', month: 'long'})
+
+        return productDate
+    
+    }
+
     return (
         <div className='w-[97%] mx-auto max-w-[1000px] bg-gray-50 p-5'>
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
-                {/* SEARCH SECTION */}
-                <div className="p-4">
-                    <label for="table-search" className="sr-only">Search</label>
-                    <div className="relative mt-1">
-                        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg className="w-5 h-5 text-gray-500 sdark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+            <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <div className='flex items-center'>      
+                    <select className="outline-none border rounded-md p-3 w-20 bg-transparent m-5">
+                        <option className="text-xs" value="10">10</option>
+                        <option className="text-xs" value="10">20</option>
+                        <option className="text-xs" value="10">30</option>
+                        <option className="text-xs" value="10">40</option>
+                        <option className="text-xs" value="10">50</option>
+                    </select>
+                    {/* SEARCH SECTION */}
+                    <div className="p-4">
+                        <label for="table-search" className="sr-only">Search</label>
+                        <div className="relative mt-1">
+                            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg className="w-5 h-5 text-gray-500 sdark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <input type="text" id="table-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  sdark:bg-gray-700 sdark:border-gray-600 sdark:placeholder-gray-400 sdark:focus:ring-blue-500 sdark:focus:border-blue-500" placeholder="Search for items" />
                         </div>
-                        <input type="text" id="table-search" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  sdark:bg-gray-700 sdark:border-gray-600 sdark:placeholder-gray-400 sdark:focus:ring-blue-500 sdark:focus:border-blue-500" placeholder="Search for items" />
                     </div>
                 </div>
+                {/* NUMBER OF OPTIONS */}
                 {/* MAIN TABLE SECTION */}
                 {
                     loading ? 
@@ -50,6 +70,9 @@ export default function Tables() {
                     <table className="w-full text-sm text-left text-gray-500 sdark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-gray-50 sdark:bg-gray-700 sdark:text-gray-400">
                             <tr>
+                                <th scope="col" className="px-6 py-3">
+                                    Date
+                                </th>
                                 <th scope="col" className="px-6 py-3">
                                     Picture
                                 </th>
@@ -74,6 +97,9 @@ export default function Tables() {
                             {
                                 productData?.map(data => (
                                     <tr key={data._id} className="border-b sdark:bg-gray-800 sdark:border-gray-700 odd:bg-white even:bg-gray-50 odd:sdark:bg-gray-800 even:sdark:bg-gray-700">
+                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 sdark:text-white whitespace-nowrap">
+                                            {new Date(data.createdAt).toLocaleString('en-GB', {day:'numeric', month: 'long'})}
+                                        </th>
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 sdark:text-white whitespace-nowrap">
                                             <img src={data.picture} className="h-[50px] w-[50px] roundedB object-cover" alt="" />
                                         </th>

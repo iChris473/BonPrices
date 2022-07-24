@@ -29,7 +29,14 @@ export default function SuperProductTable({type}) {
 
     return (
         <div className='w-[97%] mx-auto max-w-[1000px] bg-gray-50 p-5'>
-            <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+            <div className="relative overflow-x-auto flex shadow-md sm:rounded-lg w-full">
+                <select className="outline-none w-full border-b border-pink-200 pb-2">
+                    <option className="text-xs" value="10">10</option>
+                    <option className="text-xs" value="10">20</option>
+                    <option className="text-xs" value="10">30</option>
+                    <option className="text-xs" value="10">40</option>
+                    <option className="text-xs" value="10">50</option>
+                </select>
                 {/* SEARCH SECTION */}
                 <div className="p-4">
                     <label for="table-search" className="sr-only">Search</label>
@@ -66,6 +73,9 @@ export default function SuperProductTable({type}) {
                                 </th>
                                 <th scope="col" className="px-6 py-3">
                                     Agent
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    ID
                                 </th>
                                 <th scope="col" className="px-6 py-3">
                                     <span className="sr-only">Edit</span>
