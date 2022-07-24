@@ -130,6 +130,7 @@ export default function Description() {
           {/* MERCHANT ADDRESS */}
           <p className="text-gray-500 text-md md:text-lg tracking-wide text-left">{product?.merchantAddress}</p>
           <p className="text-gray-500 text-md md:text-lg tracking-wide text-left">{product?.merchantEmail}</p>
+          <p className="text-gray-500 text-md md:text-lg tracking-wide text-left">{product?.lga}, {!product?.state?.includes("All") && product?.state}</p>
         </div>
       </div>
       <Footer />

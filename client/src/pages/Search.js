@@ -72,7 +72,7 @@ export default function Search() {
                 )) : 
                   <div className="flexCenter w-[85%] mx-auto flex-col gap-5">
                     <NotFound />
-                    <p className="text-xl md:text-2xl tracking-wider font-semibold text-gray-500">Oops! No result found in this state</p>
+                    <p className="text-xl md:text-2xl tracking-wider font-semibold text-center text-gray-500">Oops! No result found in this state</p>
                   </div>
               }
             </div>

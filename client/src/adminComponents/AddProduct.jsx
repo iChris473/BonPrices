@@ -104,11 +104,6 @@ export default function AddProduct() {
       desc.current.value = ''
       price.current.value = ''
       unit.current.value = ''
-      state.current.value = ''
-      merchantName.current.value = ''
-      merchantNumber.current.value = ''
-      merchantAddress.current.value = ''
-      merchantEmail.current.value = ''
       
     } catch (error) {
       setLoading(false)
