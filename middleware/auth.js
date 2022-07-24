@@ -29,6 +29,11 @@ const auth = async (req, res, next) => {
                 if(agent.deactivated) return res.status(200).json({deactivated: true})
 
                 req.userId = user.id
+                
+                if(req.originalUrl.includes("/product/create") || req.originalUrl.includes("/product/update/")){
+                    req.body.agentEmail = agent.email
+                }
+               
             }
 
             next()

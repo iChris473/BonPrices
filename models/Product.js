@@ -27,6 +27,10 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    lga: {
+        type: String,
+        required: true
+    },
     agentId: {
         type: String,
         required: true
@@ -44,6 +48,10 @@ const ProductSchema = new mongoose.Schema({
         required: true
     },
     merchantEmail: String,
+    agentEmail: {
+        type: String,
+        required: true
+    }
 
 }, {timestamps: true})
 

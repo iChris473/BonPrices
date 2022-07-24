@@ -39,10 +39,11 @@ export default function Search() {
   
     setIsLoading(true)
     
+    window.scrollTo(0, 0);
+
     try {
       
       const res = await publicRequest.get(`/product/search?q=${query}&state=${state}`)
-
       setAllResult(res.data)
       setIsLoading(false)
       

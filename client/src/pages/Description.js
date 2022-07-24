@@ -39,7 +39,7 @@ export default function Description() {
     try {
       
       const res = await publicRequest.get(`/product/get/${id}`)
-
+      console.log(res.data)
       setProduct(res.data)
       setIsLoading(false)
       

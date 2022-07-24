@@ -173,7 +173,7 @@ exports.logOut = async (req, res) => {
 exports.getAgentProfile = async (req, res) => {
 
     try {
-        
+
         const agnt = await Agent.findById(req.userId)
 
         const {password, ...others} = agnt._doc

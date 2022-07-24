@@ -47,7 +47,7 @@ export default function Home() {
       {/* <button className="text-white rounded-md p-2 bg-[#a8039b] font-bold absolute top-5 right-5">
         Sign in
       </button> */}
-      <form onSubmit={e => { e.preventDefault(); navigate(`/search#?q=${query.current.value}${state.current.value && "&state="+state.current.value}`) }} className="min-h-screen pt-5 flex-col">
+      <form onSubmit={e => { e.preventDefault(); navigate(`/search?q=${query.current.value}${state.current.value && "&state="+state.current.value}`) }} className="min-h-screen pt-5 flex-col">
         {/* LOGO SECTION */}
         <div className="flex items-center flex-col">
           <img src={require("../images/plogo.png")} className="h-40 object-contain" alt="" />

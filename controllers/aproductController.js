@@ -1,12 +1,13 @@
 
 
 const Product = require("../models/Product")
+const Agent = require("../models/Agent")
 
 exports.createProduct = async (req, res) => {
 
     try {
 
-       const newProduct = new Product({...req.body, agentId: req.userId})
+       const newProduct = new Product({...req.body, agentId: req.userId, agentEmail: req.body.agentEmail})
        
        await newProduct.save()
 
