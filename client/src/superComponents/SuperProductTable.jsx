@@ -65,7 +65,7 @@ export default function SuperProductTable({type}) {
                                     Unit
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Agent's Email
+                                    Agent
                                 </th>
                                 <th scope="col" className="px-6 py-3">
                                     <span className="sr-only">Edit</span>
