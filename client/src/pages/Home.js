@@ -49,16 +49,16 @@ export default function Home() {
       </button> */}
       <form onSubmit={e => { e.preventDefault(); navigate(`/search?q=${query.current.value}${state.current.value && "&state="+state.current.value}`) }} className="min-h-screen pt-5 flex-col">
         {/* LOGO SECTION */}
-        <div className="flex items-center flex-col">
-          <img src={require("../images/plogo.png")} className="h-40 object-contain" alt="" />
-          <h1 className="text-[#a8039b] font-extrabold text-4xl"> Pricedatabase </h1>
+        <div className="flex items-center flex-col mt-5">
+          <img src={require("../images/plogo.png")} className="h-32 object-contain" alt="" />
+          <h1 className="text-[#a8039b] font-extrabold text-2xl"> Pricedatabase </h1>
           <p className="text-gray-500 text-xs md:text-md text-center"> Get the actual price of any product in any Nigerian State</p>
         </div>
         {/* SEARCH SECTION */}
-        <p className="text-gray-500 text-md md:text-lg text-right mt-5 w-[90%] mx-auto max-w-[700px]">
+        <p className="text-gray-500 text-xs md:text-md text-right mt-5 w-[90%] mx-auto max-w-[600px]">
           Filter location
         </p>
-        <div className='border border-[#d6a7d2] w-[90%] mx-auto max-w-[700px] p-3 rounded-lg flexCenter flex-col'>
+        <div className='border border-[#d6a7d2] w-[90%] mx-auto max-w-[600px] p-2 rounded-lg flexCenter flex-col'>
           {/* INPUT SECTION */}
           <div className="w-full flexBetween gap-3">
             <input

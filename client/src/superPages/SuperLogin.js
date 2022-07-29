@@ -64,17 +64,17 @@ export default function SuperLogin() {
                 <div className="flexCenter flex-col">
                     <img
                         src={require("../images/plogo.png")}
-                        className="mt-10 h-32 object-contain"
+                        className="mt-10 h-20 object-contain"
                         alt=""
                     />
-                    <h1 className="text-gray-700 font-extrabold text-4xl">
+                    <h1 className="text-gray-700 font-extrabold text-2xl">
                         Super Admin
                     </h1>
                 </div>
-                {err && <p className="text-red-500 text-lg font-semibold text-center mt-7">{err}</p>}
+                {err && <p className="text-red-500 text-lg font-semibold text-center mt-4">{err}</p>}
                 {/* INPUT SECTION */}
-                <form onSubmit={handleSubmit} className="w-[95%] max-w-[600px] shadow-md border mx-auto flexCenter flex-col mt-10 bg-gray-50 bg-opacity-60">
-                    <p className="text-gray-500 font-bold text-md md:text-lg text-left mt-5 w-[90%] mx-auto">
+                <form onSubmit={handleSubmit} className="w-[95%] max-w-[400px] shadow-md border mx-auto flexCenter flex-col mt-10 bg-gray-50 bg-opacity-60">
+                    <p className="text-gray-500 font-bold text-md text-left mt-5 w-[90%] mx-auto">
                         Email*
                     </p>
                     <input
@@ -82,9 +82,9 @@ export default function SuperLogin() {
                         required
                         type="email"
                         placeholder="Enter a valid email"
-                        className="outline-none text-gray-500 bg-transparent border border-black w-[94%] mx-auto p-3 rounded-lg"
+                        className="outline-none text-gray-500 bg-transparent border-b border-gray-400 w-[90%] mx-auto p-2"
                     />
-                    <p className="text-gray-500 font-bold text-md md:text-lg text-left mt-5 w-[90%] mx-auto">
+                    <p className="text-gray-500 font-bold text-md text-left mt-5 w-[90%] mx-auto">
                         Password*
                     </p>
                     <input
@@ -92,10 +92,10 @@ export default function SuperLogin() {
                         required
                         type="Password"
                         placeholder="******"
-                        className="outline-none text-gray-500 bg-transparent border border-black w-[94%] mx-auto p-3 rounded-lg"
+                        className="outline-none text-gray-500 bg-transparent border-b border-gray-400 w-[90%] mx-auto p-2"
                     />
                     {/* DESCRIPTION SECTION */}
-                    <button type="submit" className="py-4 px-10 font-extrabold hover:animate-pulse rounded-lg bg-gray-700 text-lg text-white w-[90%] mx-auto my-10">{loading ? "Loading..." : 'Sign in'}</button>
+                    <button type="submit" className="py-2 px-10 font-extrabold hover:animate-pulse rounded-lg bg-gray-700 text-lg text-white w-[90%] mx-auto my-10">{loading ? "Loading..." : 'Sign in'}</button>
                 </form>
             
             </div>
